@@ -28,6 +28,16 @@
 - Frontend stack target: React, TypeScript, Vite, TanStack Query, React Hook Form, Zod, Tailwind CSS.
 - Backend stack target: ASP.NET Core Web API, EF Core, PostgreSQL, FluentValidation, JWT auth.
 
+## Required Git Workflow
+- For any feature, story, fix, or meaningful repo task, do not work directly on `main`.
+- Start from the latest `main`, then create a focused branch before making changes.
+- Preferred branch prefixes: `feat/`, `fix/`, `docs/`, `chore/`.
+- If the current task already has an appropriate branch checked out, continue on that branch instead of creating another one.
+- Commit the work on that branch, push it to GitHub, and open a pull request targeting `main`.
+- Treat branch -> commit -> push -> PR as the default workflow for agents in this repository.
+- Keep pull requests scoped to one task or feature slice, and resolve merge conflicts on the branch before merge.
+- Use `CONTRIBUTING.md` for the human-friendly explanation of the same workflow.
+
 ## Command Policy
 - Prefer the narrowest command that proves your change.
 - For docs-only changes, no build is required.
