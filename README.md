@@ -6,13 +6,13 @@ MyFi is a personal finance and subscription tracker planned as a full-stack port
 
 - This repository is in planning and scaffold setup stage.
 - The implementation docs live under `docs/`.
-- The `frontend/` and `backend/` directories now contain initial workspace placeholders.
-- No frontend or backend projects have been initialized yet.
+- The frontend workspace is still a placeholder.
+- The backend workspace now contains a PostgreSQL-backed ASP.NET Core API using an organized vertical-slice structure with MediatR, FluentValidation, and local signup, login, and `users/me` endpoints.
 
 ## Planned Stack
 
 - Frontend: React, TypeScript, Vite, TanStack Query, React Hook Form, Zod, Tailwind CSS
-- Backend: ASP.NET Core Web API, EF Core, PostgreSQL, FluentValidation, JWT auth
+- Backend: ASP.NET Core Web API, EF Core, PostgreSQL, JWT auth
 
 ## Repository Layout
 
@@ -32,6 +32,8 @@ myfi/
     README.md
     docs/
     src/
+  .env.example
+  docker-compose.yml
   AGENTS.md
   CONTRIBUTING.md
   README.md
@@ -54,7 +56,9 @@ myfi/
 ## Notes
 
 - Keep the frontend and backend in this monorepo for now.
-- Initialize app scaffolds later inside `frontend/` and `backend/`.
+- Frontend scaffolding still needs to be initialized inside `frontend/`.
+- Backend scaffolding now lives inside `backend/`.
 - Update the shared docs first if the API contract or architecture changes.
+- The backend is intentionally using a vertical-slice layout inside `MyFi.Api` instead of the earlier layered draft, with slice-local commands, validators, handlers, DTOs, and EF configuration.
 - Use the local `frontend/README.md` and `backend/README.md` files as area-specific starting points for future work.
 - Use `docs/coordination/` and `docs/WORKLOG.md` to manage planner-to-implementer handoff in markdown.

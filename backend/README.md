@@ -4,9 +4,10 @@ This directory is reserved for the MyFi backend application.
 
 ## Current State
 
-- The backend project has not been initialized yet.
+- The backend solution now centers on a single ASP.NET Core API project with an organized vertical-slice layout.
+- Local email/password auth is bootstrapped with signup, login, and `users/me` endpoints.
 - `docs/` is for backend-specific implementation notes and agent-readable guidance.
-- `src/` is reserved for the future ASP.NET Core solution and projects.
+- `src/` contains the API project; feature files stay close together by slice, with MediatR handlers and FluentValidation validators living beside their endpoints.
 
 ## Read First
 
@@ -24,9 +25,34 @@ Before backend implementation work, read:
 10. `docs/WORKLOG.md`
 11. `backend/docs/README.md`
 
-## Intended Future Use
+## Solution Layout
 
-- Initialize the backend app in this folder later.
+```text
+backend/
+  MyFi.sln
+  src/
+    MyFi.Api/
+  tests/
+    MyFi.Api.IntegrationTests/
+```
+
+## Useful Commands
+
+Run from `backend/`:
+
+- `dotnet restore MyFi.sln`
+- `dotnet build MyFi.sln`
+- `dotnet test MyFi.sln`
+- `dotnet run --project src/MyFi.Api/MyFi.Api.csproj`
+- `dotnet ef database update --project src/MyFi.Api/MyFi.Api.csproj --startup-project src/MyFi.Api/MyFi.Api.csproj`
+
+Run from the repo root:
+
+- `docker compose up --build`
+
+## Notes
+
 - Keep backend-only working notes under `backend/docs/`.
-- Keep solution and source code under `backend/src/` once scaffolding begins.
+- Use `backend/docs/local-development.md` for local runtime details.
 - Before starting a feature, confirm the active story or bug in `docs/coordination/BOARD.md`.
+- Keep slice-local controllers, commands, validators, handlers, DTOs, entities, and EF configurations together under `backend/src/MyFi.Api/Features/`.
