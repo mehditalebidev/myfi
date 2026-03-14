@@ -1,0 +1,337 @@
+# MVP API Contract
+
+This document defines the phase 1 API surface the frontend can build against.
+
+## API Conventions
+
+- Base route prefix: `/api`
+- JSON request and response bodies
+- Authenticated routes require bearer token
+- All timestamps are ISO 8601 strings
+- Money uses decimal-compatible JSON numbers
+- List endpoints support pagination when relevant
+
+## Error Shape
+
+All non-validation errors should follow a consistent shape.
+
+```json
+{
+  "code": "resource_not_found",
+  "message": "Expense was not found."
+}
+```
+
+Validation errors can use a field-based shape.
+
+```json
+{
+  "code": "validation_failed",
+  "message": "One or more validation errors occurred.",
+  "errors": {
+    "title": ["Title is required."],
+    "amount": ["Amount must be greater than zero."]
+  }
+}
+```
+
+## Authentication
+
+### `POST /api/auth/google/start`
+
+Starts Google sign-in.
+
+Response:
+
+- `200` with a redirect URL payload, or backend may directly initiate redirect depending on implementation choice
+
+Example:
+
+```json
+{
+  "authorizationUrl": "https://accounts.google.com/..."
+}
+```
+
+### `GET /api/auth/google/callback`
+
+OAuth callback endpoint consumed by the browser redirect. Backend completes sign-in and returns or redirects with app auth state.
+
+Expected result:
+
+- access token issued
+- refresh token issued
+- redirect to frontend callback route
+
+### `POST /api/auth/refresh`
+
+Refreshes access token.
+
+Request:
+
+```json
+{
+  "refreshToken": "string"
+}
+```
+
+Response:
+
+```json
+{
+  "accessToken": "string",
+  "expiresAt": "2026-03-14T12:00:00Z",
+  "refreshToken": "string"
+}
+```
+
+### `POST /api/auth/logout`
+
+Revokes the current refresh token or session chain.
+
+Request:
+
+```json
+{
+  "refreshToken": "string"
+}
+```
+
+Response: `204 No Content`
+
+### `GET /api/users/me`
+
+Returns the authenticated user.
+
+Response:
+
+```json
+{
+  "id": "uuid",
+  "email": "user@example.com",
+  "displayName": "Jane Doe"
+}
+```
+
+## Categories
+
+### Category Shape
+
+```json
+{
+  "id": "uuid",
+  "name": "Groceries",
+  "color": "#3b82f6",
+  "icon": "shopping-cart",
+  "createdAt": "2026-03-14T12:00:00Z",
+  "updatedAt": "2026-03-14T12:00:00Z"
+}
+```
+
+### `GET /api/categories`
+
+Response:
+
+```json
+[
+  {
+    "id": "uuid",
+    "name": "Groceries",
+    "color": "#3b82f6",
+    "icon": "shopping-cart",
+    "createdAt": "2026-03-14T12:00:00Z",
+    "updatedAt": "2026-03-14T12:00:00Z"
+  }
+]
+```
+
+### `POST /api/categories`
+
+Request:
+
+```json
+{
+  "name": "Groceries",
+  "color": "#3b82f6",
+  "icon": "shopping-cart"
+}
+```
+
+Response: created category
+
+### `PUT /api/categories/{id}`
+
+Request matches create payload.
+
+### `DELETE /api/categories/{id}`
+
+Response: `204 No Content`
+
+## Expenses
+
+### Expense Shape
+
+```json
+{
+  "id": "uuid",
+  "title": "Supermarket",
+  "amount": 84.50,
+  "expenseDate": "2026-03-12",
+  "categoryId": "uuid",
+  "categoryName": "Groceries",
+  "paymentMethod": "card",
+  "note": "Weekly shopping",
+  "isRecurring": false,
+  "createdAt": "2026-03-14T12:00:00Z",
+  "updatedAt": "2026-03-14T12:00:00Z"
+}
+```
+
+### `GET /api/expenses`
+
+Query params:
+
+- `page`
+- `pageSize`
+- `search`
+- `categoryId`
+- `dateFrom`
+- `dateTo`
+- `sortBy` with values like `expenseDate` or `amount`
+- `sortDir` with values `asc` or `desc`
+
+Response:
+
+```json
+{
+  "items": [],
+  "page": 1,
+  "pageSize": 20,
+  "totalCount": 0,
+  "totalPages": 0
+}
+```
+
+### `POST /api/expenses`
+
+Request:
+
+```json
+{
+  "title": "Supermarket",
+  "amount": 84.50,
+  "expenseDate": "2026-03-12",
+  "categoryId": "uuid",
+  "paymentMethod": "card",
+  "note": "Weekly shopping",
+  "isRecurring": false
+}
+```
+
+Response: created expense
+
+### `GET /api/expenses/{id}`
+
+Response: expense
+
+### `PUT /api/expenses/{id}`
+
+Request matches create payload.
+
+### `DELETE /api/expenses/{id}`
+
+Response: `204 No Content`
+
+## Subscriptions
+
+### Subscription Shape
+
+```json
+{
+  "id": "uuid",
+  "name": "Netflix",
+  "amount": 15.99,
+  "billingCycle": "monthly",
+  "renewalDate": "2026-03-28",
+  "categoryId": "uuid",
+  "categoryName": "Entertainment",
+  "isActive": true,
+  "reminderDaysBefore": 3,
+  "createdAt": "2026-03-14T12:00:00Z",
+  "updatedAt": "2026-03-14T12:00:00Z"
+}
+```
+
+### `GET /api/subscriptions`
+
+Response:
+
+```json
+{
+  "items": [],
+  "page": 1,
+  "pageSize": 20,
+  "totalCount": 0,
+  "totalPages": 0
+}
+```
+
+### `POST /api/subscriptions`
+
+Request:
+
+```json
+{
+  "name": "Netflix",
+  "amount": 15.99,
+  "billingCycle": "monthly",
+  "renewalDate": "2026-03-28",
+  "categoryId": "uuid",
+  "isActive": true,
+  "reminderDaysBefore": 3
+}
+```
+
+Response: created subscription
+
+### `GET /api/subscriptions/{id}`
+
+Response: subscription
+
+### `PUT /api/subscriptions/{id}`
+
+Request matches create payload.
+
+### `DELETE /api/subscriptions/{id}`
+
+Response: `204 No Content`
+
+## Dashboard
+
+### `GET /api/dashboard/summary`
+
+Response:
+
+```json
+{
+  "month": 3,
+  "year": 2026,
+  "monthlySpend": 1284.10,
+  "monthlySubscriptionCost": 52.98,
+  "spendByCategory": [
+    {
+      "categoryId": "uuid",
+      "categoryName": "Groceries",
+      "amount": 420.00
+    }
+  ],
+  "recentExpenses": [],
+  "upcomingRenewals": []
+}
+```
+
+## Frontend Integration Notes
+
+- Build query hooks around resource groups: auth, categories, expenses, subscriptions, dashboard.
+- Treat field names here as contract names unless changed jointly.
+- The frontend can safely mock against this document before the backend exists.
