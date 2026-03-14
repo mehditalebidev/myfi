@@ -13,6 +13,7 @@ Keep entries brief and append new lines near the top of the active log section.
 
 ## Current Log
 
+- 2026-03-15 | AUTH-001 | in_progress | `docs/coordination-workflow` | Added Scalar API docs and introduced `v1` route-based API versioning for the auth and users endpoints.
 - 2026-03-14 | AUTH-001 | in_progress | `docs/coordination-workflow` | Replaced the in-memory API test host with WebApplicationFactory plus a seeded PostgreSQL Testcontainers setup for integration tests.
 - 2026-03-14 | AUTH-001 | in_progress | `docs/coordination-workflow` | Reorganized the users slice into folders and switched auth handling to MediatR, FluentValidation, result objects, and ProblemDetails responses.
 - 2026-03-14 | AUTH-001 | in_progress | `docs/coordination-workflow` | Reworked the backend toward a simple vertical-slice API and replaced the hello sample with local signup, login, and `users/me` auth foundations.

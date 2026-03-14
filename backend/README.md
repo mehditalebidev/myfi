@@ -58,6 +58,7 @@ Run from the repo root:
 
 - Keep backend-only working notes under `backend/docs/`.
 - Use `backend/docs/local-development.md` for local runtime details.
+- Development OpenAPI JSON is exposed at `/openapi/v1.json` and the Scalar UI at `/docs`.
 - Integration tests use WebApplicationFactory plus a PostgreSQL Testcontainer, so Docker must be available when running `dotnet test`.
 - Keep reusable test support under `backend/tests/MyFi.Api.IntegrationTests/Support/`, with infrastructure helpers separated from feature-specific test data helpers.
 - Before starting a feature, confirm the active story or bug in `docs/coordination/BOARD.md`.

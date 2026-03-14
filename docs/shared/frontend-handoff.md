@@ -24,7 +24,7 @@ The frontend developer is responsible for:
 
 - auth is token-based from the frontend perspective
 - the app has a login page and protected authenticated pages
-- current user data comes from `GET /api/users/me`
+- current user data comes from `GET /api/v1/users/me`
 - categories are reusable across expenses and subscriptions
 - dashboard is a read-only summary page for phase 1
 

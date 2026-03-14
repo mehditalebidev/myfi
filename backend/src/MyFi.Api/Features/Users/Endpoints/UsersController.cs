@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,8 @@ namespace MyFi.Api.Features.Users;
 
 [ApiController]
 [Authorize]
-[Route("api/users")]
+[ApiVersion(1.0)]
+[Route("api/v{version:apiVersion}/users")]
 public sealed class UsersController : ControllerBase
 {
     private readonly ISender _sender;
