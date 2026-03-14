@@ -54,5 +54,6 @@ Run from the repo root:
 
 - Keep backend-only working notes under `backend/docs/`.
 - Use `backend/docs/local-development.md` for local runtime details.
+- Integration tests use WebApplicationFactory plus a PostgreSQL Testcontainer, so Docker must be available when running `dotnet test`.
 - Before starting a feature, confirm the active story or bug in `docs/coordination/BOARD.md`.
 - Keep slice-local controllers, commands, validators, handlers, DTOs, entities, and EF configurations together under `backend/src/MyFi.Api/Features/`.

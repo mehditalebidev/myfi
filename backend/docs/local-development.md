@@ -38,6 +38,16 @@ This starts:
 - PostgreSQL on the configured host port
 - the backend API on `http://localhost:${API_PORT}`
 
+## Run Integration Tests
+
+From `backend/`:
+
+```bash
+dotnet test MyFi.sln
+```
+
+Integration tests use `WebApplicationFactory` with a PostgreSQL Testcontainer. Docker must be running before the test suite starts. The test fixture boots a dedicated PostgreSQL container, applies migrations through the API startup path, and seeds baseline integration-test data before requests run.
+
 ## Auth Endpoints
 
 ### `POST /api/auth/signup`
@@ -95,3 +105,4 @@ Requires `Authorization: Bearer <token>` and returns the authenticated user prof
 - current bootstrap table: `users`
 - migrations live in `backend/src/MyFi.Api/Common/Persistence/Migrations/`
 - `backend/src/MyFi.Api/Features/Users/` is the reference slice for keeping endpoints, commands, validators, handlers, DTOs, and EF mapping close together
+- integration tests use a separate PostgreSQL containerized database seeded with a baseline local user before test execution

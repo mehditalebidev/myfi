@@ -1,29 +1,28 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using MyFi.Api.Common.Persistence;
+using Microsoft.Extensions.Configuration;
 
 namespace MyFi.Api.IntegrationTests;
 
 public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
 {
-    private readonly string _databaseName = $"myfi-api-tests-{Guid.NewGuid()}";
+    private readonly string _connectionString;
+
+    public TestWebApplicationFactory(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("Test");
 
-        builder.ConfigureServices(services =>
+        builder.ConfigureAppConfiguration((_, configurationBuilder) =>
         {
-            services.RemoveAll<DbContextOptions<MyFiDbContext>>();
-            services.RemoveAll<IDbContextOptionsConfiguration<MyFiDbContext>>();
-            services.RemoveAll<MyFiDbContext>();
-
-            services.AddDbContext<MyFiDbContext>(options =>
-                options.UseInMemoryDatabase(_databaseName));
+            configurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
+            {
+                ["ConnectionStrings:MyFiDatabase"] = _connectionString
+            });
         });
     }
 }
