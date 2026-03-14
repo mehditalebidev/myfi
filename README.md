@@ -20,8 +20,10 @@ MyFi is a personal finance and subscription tracker planned as a full-stack port
 myfi/
   docs/
     shared/
+    coordination/
     frontend/
     backend/
+    WORKLOG.md
   frontend/
     README.md
     docs/
@@ -43,8 +45,11 @@ myfi/
 4. `docs/shared/auth-flow.md`
 5. `docs/shared/api-contract.md`
 6. `docs/shared/repo-structure.md`
-7. `CONTRIBUTING.md`
-8. `frontend/README.md` or `backend/README.md` depending on the area you are changing
+7. `docs/coordination/README.md`
+8. `docs/coordination/BOARD.md`
+9. `docs/WORKLOG.md`
+10. `CONTRIBUTING.md`
+11. `frontend/README.md` or `backend/README.md` depending on the area you are changing
 
 ## Notes
 
@@ -52,3 +57,4 @@ myfi/
 - Initialize app scaffolds later inside `frontend/` and `backend/`.
 - Update the shared docs first if the API contract or architecture changes.
 - Use the local `frontend/README.md` and `backend/README.md` files as area-specific starting points for future work.
+- Use `docs/coordination/` and `docs/WORKLOG.md` to manage planner-to-implementer handoff in markdown.

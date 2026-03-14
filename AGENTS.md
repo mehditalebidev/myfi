@@ -18,10 +18,18 @@
 ## Read First
 - `docs/shared/README.md`, `docs/shared/product-scope.md`, `docs/shared/domain-model.md`
 - `docs/shared/auth-flow.md`, `docs/shared/api-contract.md`, `docs/shared/repo-structure.md`
+- `docs/coordination/README.md`, `docs/coordination/OPERATING_MODEL.md`, `docs/coordination/BOARD.md`
+- `docs/WORKLOG.md` before continuing an existing story or bug
 - `docs/frontend/frontend-architecture.md`, `docs/frontend/ui-and-components.md`
 - `docs/backend/backend-architecture.md`, `docs/backend/backend-endpoints.md`, `docs/backend/security-and-auth.md`
 - For frontend work, also read `frontend/README.md` and then `frontend/docs/` if present.
 - For backend work, also read `backend/README.md` and then `backend/docs/` if present.
+
+## Coordination Workflow
+- Planner/product-owner agents should create and refine work in `docs/coordination/` and should not implement product code in that role.
+- Implementer agents should pick a `Ready` item from `docs/coordination/BOARD.md` unless the user explicitly overrides that rule.
+- Implementer agents should update `docs/coordination/BOARD.md` and `docs/WORKLOG.md` as work moves through `In Progress`, `In Review`, `Blocked`, and `Done`.
+- Humans merge pull requests; agents should open PRs to `main` but not merge unless explicitly instructed.
 
 ## Repo Shape To Preserve
 - Top level target: `docs/`, `frontend/`, `backend/`, `.env.example`, `docker-compose.yml`.
