@@ -7,7 +7,8 @@
 
 ## Current State
 - The repository currently contains planning and handoff docs under `docs/`.
-- No confirmed frontend/backend scaffold or runnable scripts are checked in yet.
+- Initial `frontend/` and `backend/` workspace folders exist with local `README.md`, `docs/`, and `src/` placeholders.
+- No runnable frontend/backend projects or scripts are checked in yet.
 - Command examples below are the intended defaults once the scaffold exists.
 
 ## Extra Instruction Files
@@ -19,6 +20,8 @@
 - `docs/shared/auth-flow.md`, `docs/shared/api-contract.md`, `docs/shared/repo-structure.md`
 - `docs/frontend/frontend-architecture.md`, `docs/frontend/ui-and-components.md`
 - `docs/backend/backend-architecture.md`, `docs/backend/backend-endpoints.md`, `docs/backend/security-and-auth.md`
+- For frontend work, also read `frontend/README.md` and then `frontend/docs/` if present.
+- For backend work, also read `backend/README.md` and then `backend/docs/` if present.
 
 ## Repo Shape To Preserve
 - Top level target: `docs/`, `frontend/`, `backend/`, `.env.example`, `docker-compose.yml`.

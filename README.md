@@ -6,7 +6,7 @@ MyFi is a personal finance and subscription tracker planned as a full-stack port
 
 - This repository is in planning and scaffold setup stage.
 - The implementation docs live under `docs/`.
-- The `frontend/` and `backend/` directories exist as placeholders only.
+- The `frontend/` and `backend/` directories now contain initial workspace placeholders.
 - No frontend or backend projects have been initialized yet.
 
 ## Planned Stack
@@ -23,8 +23,15 @@ myfi/
     frontend/
     backend/
   frontend/
+    README.md
+    docs/
+    src/
   backend/
+    README.md
+    docs/
+    src/
   AGENTS.md
+  CONTRIBUTING.md
   README.md
 ```
 
@@ -36,9 +43,12 @@ myfi/
 4. `docs/shared/auth-flow.md`
 5. `docs/shared/api-contract.md`
 6. `docs/shared/repo-structure.md`
+7. `CONTRIBUTING.md`
+8. `frontend/README.md` or `backend/README.md` depending on the area you are changing
 
 ## Notes
 
 - Keep the frontend and backend in this monorepo for now.
 - Initialize app scaffolds later inside `frontend/` and `backend/`.
 - Update the shared docs first if the API contract or architecture changes.
+- Use the local `frontend/README.md` and `backend/README.md` files as area-specific starting points for future work.
