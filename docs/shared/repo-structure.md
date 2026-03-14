@@ -11,7 +11,13 @@ myfi/
     frontend/
     backend/
   frontend/
+    README.md
+    docs/
+    src/
   backend/
+    README.md
+    docs/
+    src/
   .env.example
   docker-compose.yml
   README.md
@@ -21,6 +27,8 @@ myfi/
 
 ```text
 frontend/
+  README.md
+  docs/
   src/
     app/
       providers/
@@ -53,6 +61,8 @@ frontend/
 
 ```text
 backend/
+  README.md
+  docs/
   src/
     MyFi.Api/
     MyFi.Application/
@@ -85,4 +95,5 @@ backend/
 
 - Frontend dev owns `frontend/` and uses `docs/shared/` plus `docs/frontend/`
 - Backend dev owns `backend/` and uses `docs/shared/` plus `docs/backend/`
+- `frontend/README.md` and `backend/README.md` should be treated as local entrypoints for agents working in those areas.
 - Contract changes must be updated first in `docs/shared/api-contract.md`
