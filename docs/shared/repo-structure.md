@@ -8,8 +8,10 @@ This is the recommended repository shape before implementation begins.
 myfi/
   docs/
     shared/
+    coordination/
     frontend/
     backend/
+    WORKLOG.md
   frontend/
     README.md
     docs/
@@ -95,5 +97,6 @@ backend/
 
 - Frontend dev owns `frontend/` and uses `docs/shared/` plus `docs/frontend/`
 - Backend dev owns `backend/` and uses `docs/shared/` plus `docs/backend/`
+- Planner and coordinator work lives in `docs/coordination/` plus `docs/WORKLOG.md`
 - `frontend/README.md` and `backend/README.md` should be treated as local entrypoints for agents working in those areas.
 - Contract changes must be updated first in `docs/shared/api-contract.md`

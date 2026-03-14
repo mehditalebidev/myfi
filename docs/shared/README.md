@@ -7,6 +7,7 @@ This directory contains the planning and handoff material for the Personal Finan
 - `docs/shared/` contains information both frontend and backend work depend on.
 - `docs/frontend/` contains frontend-specific architecture, page, and implementation notes.
 - `docs/backend/` contains backend-specific architecture, schema, security, and endpoint notes.
+- `docs/coordination/` contains planner-to-implementer workflow, board state, and feature definitions.
 
 ## Handoff Package For Frontend Developer
 
@@ -30,7 +31,9 @@ Do not block frontend work on backend implementation details unless the API cont
 3. `docs/shared/auth-flow.md`
 4. `docs/shared/api-contract.md`
 5. `docs/shared/repo-structure.md`
-6. `docs/frontend/` or `docs/backend/` depending on ownership
+6. `docs/coordination/README.md`
+7. `docs/coordination/BOARD.md`
+8. `docs/frontend/` or `docs/backend/` depending on ownership
 
 ## Current Planning Decisions
 

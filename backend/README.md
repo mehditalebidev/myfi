@@ -20,10 +20,13 @@ Before backend implementation work, read:
 6. `docs/backend/backend-architecture.md`
 7. `docs/backend/backend-endpoints.md`
 8. `docs/backend/security-and-auth.md`
-9. `backend/docs/README.md`
+9. `docs/coordination/BOARD.md`
+10. `docs/WORKLOG.md`
+11. `backend/docs/README.md`
 
 ## Intended Future Use
 
 - Initialize the backend app in this folder later.
 - Keep backend-only working notes under `backend/docs/`.
 - Keep solution and source code under `backend/src/` once scaffolding begins.
+- Before starting a feature, confirm the active story or bug in `docs/coordination/BOARD.md`.

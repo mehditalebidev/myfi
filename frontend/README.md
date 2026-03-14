@@ -19,10 +19,13 @@ Before frontend implementation work, read:
 5. `docs/shared/api-contract.md`
 6. `docs/frontend/frontend-architecture.md`
 7. `docs/frontend/ui-and-components.md`
-8. `frontend/docs/README.md`
+8. `docs/coordination/BOARD.md`
+9. `docs/WORKLOG.md`
+10. `frontend/docs/README.md`
 
 ## Intended Future Use
 
 - Initialize the frontend app in this folder later.
 - Keep frontend-only working notes under `frontend/docs/`.
 - Keep application code under `frontend/src/` once scaffolding begins.
+- Before starting a feature, confirm the active story or bug in `docs/coordination/BOARD.md`.
