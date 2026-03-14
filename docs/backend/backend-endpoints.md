@@ -4,7 +4,7 @@ This document complements the shared API contract with backend implementation no
 
 ## Auth
 
-### `POST /api/auth/signup`
+### `POST /api/v1/auth/signup`
 
 Responsibilities:
 
@@ -16,7 +16,7 @@ Responsibilities:
 - issue an access token
 - return `ProblemDetails` on conflict
 
-### `POST /api/auth/login`
+### `POST /api/v1/auth/login`
 
 Responsibilities:
 
@@ -28,7 +28,13 @@ Responsibilities:
 
 ## Users
 
-### `GET /api/users/me`
+### `GET /api/v1/users/me`
+
+Versioning notes:
+
+- current HTTP route version is `v1`
+- API version metadata is reported in response headers
+- development docs are exposed through Scalar at `/docs`
 
 Responsibilities:
 

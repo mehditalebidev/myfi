@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyFi.Api.Common.Api;
@@ -5,7 +6,8 @@ using MyFi.Api.Common.Api;
 namespace MyFi.Api.Features.Users;
 
 [ApiController]
-[Route("api/auth")]
+[ApiVersion(1.0)]
+[Route("api/v{version:apiVersion}/auth")]
 public sealed class AuthController : ControllerBase
 {
     private readonly ISender _sender;

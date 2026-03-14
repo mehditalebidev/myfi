@@ -8,6 +8,8 @@ namespace MyFi.Api.IntegrationTests;
 
 public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
 {
+    private const string ApiBasePath = "/api/v1";
+
     private readonly IntegrationTestFixture _fixture;
 
     public AuthEndpointsTests(IntegrationTestFixture fixture)
@@ -21,7 +23,7 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
         var client = _fixture.CreateClient();
         var user = TestUserData.NewUser("signup");
 
-        var signupResponse = await client.PostAsJsonAsync("/api/auth/signup", new
+        var signupResponse = await client.PostAsJsonAsync($"{ApiBasePath}/auth/signup", new
         {
             email = user.Email,
             displayName = user.DisplayName,
@@ -43,7 +45,7 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
     {
         var client = _fixture.CreateClient();
 
-        var loginResponse = await client.PostAsJsonAsync("/api/auth/login", new
+        var loginResponse = await client.PostAsJsonAsync($"{ApiBasePath}/auth/login", new
         {
             email = TestUserData.Seeded.Email,
             password = TestUserData.Seeded.Password
@@ -57,7 +59,7 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
 
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", loginPayload.AccessToken);
 
-        var meResponse = await client.GetAsync("/api/users/me");
+        var meResponse = await client.GetAsync($"{ApiBasePath}/users/me");
 
         Assert.Equal(HttpStatusCode.OK, meResponse.StatusCode);
 
@@ -73,7 +75,7 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
     {
         var client = _fixture.CreateClient();
 
-        var duplicateResponse = await client.PostAsJsonAsync("/api/auth/signup", new
+        var duplicateResponse = await client.PostAsJsonAsync($"{ApiBasePath}/auth/signup", new
         {
             email = TestUserData.Seeded.Email,
             displayName = "Second User",
@@ -95,7 +97,7 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
     {
         var client = _fixture.CreateClient();
 
-        var loginResponse = await client.PostAsJsonAsync("/api/auth/login", new
+        var loginResponse = await client.PostAsJsonAsync($"{ApiBasePath}/auth/login", new
         {
             email = TestUserData.Seeded.Email,
             password = "WrongPass123!"

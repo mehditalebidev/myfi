@@ -4,7 +4,8 @@ This document defines the phase 1 API surface the frontend can build against.
 
 ## API Conventions
 
-- Base route prefix: `/api`
+- Base route prefix: `/api/v{version}`
+- Current implemented version: `v1`
 - JSON request and response bodies
 - Authenticated routes require bearer token
 - All timestamps are ISO 8601 strings
@@ -45,7 +46,7 @@ Validation example:
 
 ## Authentication
 
-### `POST /api/auth/signup`
+### `POST /api/v1/auth/signup`
 
 Creates a local user and returns an access token.
 
@@ -77,7 +78,7 @@ Example:
 }
 ```
 
-### `POST /api/auth/login`
+### `POST /api/v1/auth/login`
 
 Logs an existing user in and returns an access token.
 
@@ -95,7 +96,7 @@ Expected result:
 - access token issued
 - authenticated user returned
 
-### `GET /api/users/me`
+### `GET /api/v1/users/me`
 
 Returns the authenticated user.
 

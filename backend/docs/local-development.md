@@ -38,6 +38,11 @@ This starts:
 - PostgreSQL on the configured host port
 - the backend API on `http://localhost:${API_PORT}`
 
+In Development, API docs are also available at:
+
+- Scalar UI: `http://localhost:${API_PORT}/docs`
+- OpenAPI JSON: `http://localhost:${API_PORT}/openapi/v1.json`
+
 ## Run Integration Tests
 
 From `backend/`:
@@ -56,7 +61,7 @@ Test support is organized under `backend/tests/MyFi.Api.IntegrationTests/Support
 
 ## Auth Endpoints
 
-### `POST /api/auth/signup`
+### `POST /api/v1/auth/signup`
 
 Request:
 
@@ -70,7 +75,7 @@ Request:
 
 Returns a JWT access token, token expiry, and the created user.
 
-### `POST /api/auth/login`
+### `POST /api/v1/auth/login`
 
 Request:
 
@@ -102,7 +107,7 @@ Success response:
 }
 ```
 
-### `GET /api/users/me`
+### `GET /api/v1/users/me`
 
 Requires `Authorization: Bearer <token>` and returns the authenticated user profile.
 
