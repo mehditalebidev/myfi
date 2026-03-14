@@ -4,40 +4,27 @@ This document complements the shared API contract with backend implementation no
 
 ## Auth
 
-### `POST /api/auth/google/start`
+### `POST /api/auth/signup`
 
 Responsibilities:
 
-- create or return provider authorization URL
-- preserve anti-forgery state if needed
-- start backend-managed OAuth flow
+- validate the signup payload
+- dispatch through MediatR
+- ensure email uniqueness
+- hash the password
+- create the local user
+- issue an access token
+- return `ProblemDetails` on conflict
 
-### `GET /api/auth/google/callback`
-
-Responsibilities:
-
-- validate callback state
-- exchange code with Google
-- read provider profile
-- create or link local user
-- issue access and refresh tokens
-- redirect to frontend callback route
-
-### `POST /api/auth/refresh`
+### `POST /api/auth/login`
 
 Responsibilities:
 
-- validate refresh token
-- verify stored token hash
-- rotate refresh token
-- issue new access token
-
-### `POST /api/auth/logout`
-
-Responsibilities:
-
-- revoke refresh token
-- invalidate future refresh for that token chain if desired
+- validate the login payload
+- dispatch through MediatR
+- verify the stored password hash
+- issue an access token
+- return `ProblemDetails` on invalid credentials
 
 ## Users
 
@@ -46,6 +33,7 @@ Responsibilities:
 Responsibilities:
 
 - read authenticated local user
+- dispatch through MediatR
 - return minimal profile data
 
 ## Categories

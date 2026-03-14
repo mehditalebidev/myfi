@@ -2,11 +2,10 @@
 
 ## Security Priorities
 
-- secure Google OAuth implementation
-- keep provider details behind backend boundary
+- secure local email/password authentication
 - isolate all user data by authenticated local user id
-- validate all inputs consistently
-- never expose refresh token storage details to the client
+- validate all inputs consistently with FluentValidation and ProblemDetails responses
+- never expose password hashes to the client
 
 ## JWT Strategy
 
@@ -15,13 +14,6 @@
 - short lifetime
 - signed by backend
 - includes minimal claims such as local user id and email if needed
-
-### Refresh Token
-
-- longer lifetime
-- stored hashed in database
-- rotated on refresh
-- revoked on logout
 
 ## Recommended Claims
 
@@ -45,24 +37,31 @@ Correct pattern:
 
 ## Input Validation
 
-- use FluentValidation in application layer
+- use FluentValidation validators close to each command or query
+- run validation through the MediatR pipeline before handlers execute
 - validate DTOs before persistence
 - validate route ownership before mutation
 
-## OAuth Notes
+## Error Response Notes
 
-- use state validation during OAuth flow
-- keep Google client secret only on backend
-- never rely on frontend-only identity trust for protected API access
+- use `ProblemDetails` for auth and domain errors
+- use `ValidationProblemDetails` for request validation failures
+- keep a stable app-specific `code` extension on problem responses
+
+## Password Notes
+
+- store only hashed passwords
+- never log passwords or password hashes
+- reject invalid credentials with a generic auth error
 
 ## Local Development Notes
 
 - use local configuration values from environment
-- document required auth and database settings in `.env.example` later
+- document required auth and database settings in `.env.example`
 - if HTTPS is awkward locally, keep the flow development-friendly but do not weaken production assumptions in docs
 
 ## Logging Guidance
 
 - log auth failures without leaking sensitive token values
 - log important domain actions at a useful but not noisy level
-- avoid logging raw refresh tokens or provider secrets
+- avoid logging raw passwords or password hashes

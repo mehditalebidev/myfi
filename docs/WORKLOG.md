@@ -13,6 +13,10 @@ Keep entries brief and append new lines near the top of the active log section.
 
 ## Current Log
 
+- 2026-03-14 | AUTH-001 | in_progress | `docs/coordination-workflow` | Replaced the in-memory API test host with WebApplicationFactory plus a seeded PostgreSQL Testcontainers setup for integration tests.
+- 2026-03-14 | AUTH-001 | in_progress | `docs/coordination-workflow` | Reorganized the users slice into folders and switched auth handling to MediatR, FluentValidation, result objects, and ProblemDetails responses.
+- 2026-03-14 | AUTH-001 | in_progress | `docs/coordination-workflow` | Reworked the backend toward a simple vertical-slice API and replaced the hello sample with local signup, login, and `users/me` auth foundations.
+- 2026-03-14 | SETUP-003 | in_progress | `docs/coordination-workflow` | Started backend-first scaffold with the .NET solution, PostgreSQL wiring, Docker Compose setup, and a validated hello endpoint slice.
 - 2026-03-14 | SETUP-002 | done | PR #1 | Added workspace entrypoints, local docs/src placeholders, and `CONTRIBUTING.md`.
 - 2026-03-14 | SETUP-001 | done | `main` | Added the root `README.md` plus initial `frontend/` and `backend/` directories.
 

@@ -13,21 +13,29 @@ This document defines the phase 1 API surface the frontend can build against.
 
 ## Error Shape
 
-All non-validation errors should follow a consistent shape.
+All API errors should use ProblemDetails-style JSON.
+
+Non-validation example:
 
 ```json
 {
-  "code": "resource_not_found",
-  "message": "Expense was not found."
+  "type": "https://httpstatuses.com/404",
+  "title": "Expense was not found.",
+  "status": 404,
+  "detail": "The requested expense does not exist.",
+  "code": "resource_not_found"
 }
 ```
 
-Validation errors can use a field-based shape.
+Validation example:
 
 ```json
 {
+  "type": "https://httpstatuses.com/400",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "detail": "See the errors property for details.",
   "code": "validation_failed",
-  "message": "One or more validation errors occurred.",
   "errors": {
     "title": ["Title is required."],
     "amount": ["Amount must be greater than zero."]
@@ -37,67 +45,55 @@ Validation errors can use a field-based shape.
 
 ## Authentication
 
-### `POST /api/auth/google/start`
+### `POST /api/auth/signup`
 
-Starts Google sign-in.
+Creates a local user and returns an access token.
+
+Request:
+
+```json
+{
+  "email": "user@example.com",
+  "displayName": "Jane Doe",
+  "password": "Password123!"
+}
+```
 
 Response:
 
-- `200` with a redirect URL payload, or backend may directly initiate redirect depending on implementation choice
+- `200` with auth state
 
 Example:
 
 ```json
 {
-  "authorizationUrl": "https://accounts.google.com/..."
+  "accessToken": "string",
+  "expiresAt": "2026-03-14T12:00:00Z",
+  "user": {
+    "id": "uuid",
+    "email": "user@example.com",
+    "displayName": "Jane Doe"
+  }
 }
 ```
 
-### `GET /api/auth/google/callback`
+### `POST /api/auth/login`
 
-OAuth callback endpoint consumed by the browser redirect. Backend completes sign-in and returns or redirects with app auth state.
+Logs an existing user in and returns an access token.
+
+Request:
+
+```json
+{
+  "email": "user@example.com",
+  "password": "Password123!"
+}
+```
 
 Expected result:
 
 - access token issued
-- refresh token issued
-- redirect to frontend callback route
-
-### `POST /api/auth/refresh`
-
-Refreshes access token.
-
-Request:
-
-```json
-{
-  "refreshToken": "string"
-}
-```
-
-Response:
-
-```json
-{
-  "accessToken": "string",
-  "expiresAt": "2026-03-14T12:00:00Z",
-  "refreshToken": "string"
-}
-```
-
-### `POST /api/auth/logout`
-
-Revokes the current refresh token or session chain.
-
-Request:
-
-```json
-{
-  "refreshToken": "string"
-}
-```
-
-Response: `204 No Content`
+- authenticated user returned
 
 ### `GET /api/users/me`
 

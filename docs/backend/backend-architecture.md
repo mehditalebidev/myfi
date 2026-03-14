@@ -5,56 +5,49 @@
 - ASP.NET Core Web API
 - Entity Framework Core
 - PostgreSQL
-- FluentValidation
 - JWT authentication
 
 ## Architectural Style
 
-Use a pragmatic layered or simplified Clean Architecture approach.
+Use a simple vertical-slice approach inside the API project.
 
 ```text
-API -> Application -> Domain -> Infrastructure
+MyFi.Api/
+  Common/
+  Features/
+    Users/
+    Categories/
+    Expenses/
+    Subscriptions/
+    Dashboard/
 ```
 
-## Layer Responsibilities
+## Slice Responsibilities
 
-### API Layer
+Each feature slice should keep related files close together:
 
-- HTTP endpoints
-- authentication and authorization wiring
-- request/response mapping
-- global exception handling
-- middleware registration
+- controller
+- request and response DTOs
+- handler or service classes
+- entity and EF Core configuration when the data is feature-specific
+- feature-local query or command logic
 
-### Application Layer
+Keep only a few shared cross-cutting pieces outside the slice:
 
-- use cases and orchestration
-- DTOs
-- validation
-- query services
-- interfaces for infrastructure dependencies
-
-### Domain Layer
-
-- entities
-- enums
-- business invariants
-- domain concepts that should not depend on frameworks
-
-### Infrastructure Layer
-
-- EF Core `DbContext`
-- repositories or query implementations if used
-- Google OAuth integration
-- JWT generation
-- refresh token persistence
+- `DbContext`
+- generic repository
+- JWT and password helpers
+- MediatR pipeline behaviors
+- middleware and shared ProblemDetails helpers
 
 ## Design Guidance
 
 - keep controllers thin
-- keep business rules in application/domain, not in controllers
+- use MediatR to dispatch feature commands and queries from controllers
+- keep feature logic inside the same slice instead of spreading it across projects
 - avoid over-abstracting repositories if EF Core already fits the use case
 - keep user scoping explicit in queries and command handling
+- use FluentValidation near each command or query and run it through the MediatR pipeline
 
 ## Suggested Solution Layout
 
@@ -62,12 +55,23 @@ API -> Application -> Domain -> Infrastructure
 backend/
   src/
     MyFi.Api/
-    MyFi.Application/
-    MyFi.Domain/
-    MyFi.Infrastructure/
+      Common/
+        Api/
+        Behaviors/
+        Persistence/
+        Results/
+        Security/
+      Features/
+        Users/
+          Endpoints/
+          Signup/
+          Login/
+          GetCurrentUser/
+          Domain/
+          Persistence/
+          Shared/
   tests/
     MyFi.Api.IntegrationTests/
-    MyFi.Application.Tests/
 ```
 
 ## Initial Application Modules

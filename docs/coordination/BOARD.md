@@ -9,13 +9,11 @@ Update it whenever work changes status.
 
 | ID | Title | Notes |
 | --- | --- | --- |
-| SETUP-003 | Initialize frontend and backend project scaffolds | Create the first real app skeletons inside `frontend/` and `backend/` without changing the planned architecture. See `FEATURES.md`. |
 
 ## Backlog
 
 | ID | Title | Notes |
 | --- | --- | --- |
-| AUTH-001 | Build backend auth foundation | Promote to `Ready` after `SETUP-003` lands. |
 | AUTH-002 | Build frontend auth shell | Promote to `Ready` after `SETUP-003` and `AUTH-001` land. |
 | CAT-001 | Category CRUD vertical slice | Depends on backend and frontend scaffolds plus auth foundation. |
 | EXP-001 | Expense CRUD vertical slice | Depends on category data shape and authenticated app shell. |
@@ -29,7 +27,10 @@ Update it whenever work changes status.
 
 ## In Progress
 
-No active product implementation item is currently in progress.
+| ID | Title | Notes |
+| --- | --- | --- |
+| SETUP-003 | Initialize frontend and backend project scaffolds | Backend-first implementation started per user direction. Frontend scaffold still pending. |
+| AUTH-001 | Build backend auth foundation | User-directed local email/password auth is in progress with organized vertical slices, MediatR, FluentValidation, ProblemDetails, and seeded PostgreSQL integration tests. |
 
 ## In Review
 
