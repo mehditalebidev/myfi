@@ -11,12 +11,7 @@ public static class ProblemDetailsExtensions
         this Result<TValue> result,
         ControllerBase controller)
     {
-        if (result.IsSuccess)
-        {
-            return controller.Ok(result.Value);
-        }
-
-        return controller.ToProblem(result.Error!);
+        return result.IsSuccess ? controller.Ok(result.Value) : controller.ToProblem(result.Error!);
     }
 
     public static ObjectResult ToProblem(this ControllerBase controller, Error error)

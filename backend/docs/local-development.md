@@ -48,6 +48,12 @@ dotnet test MyFi.sln
 
 Integration tests use `WebApplicationFactory` with a PostgreSQL Testcontainer. Docker must be running before the test suite starts. The test fixture boots a dedicated PostgreSQL container, applies migrations through the API startup path, and seeds baseline integration-test data before requests run.
 
+Test support is organized under `backend/tests/MyFi.Api.IntegrationTests/Support/`:
+
+- `Infrastructure/` for the test container and WebApplicationFactory wiring
+- `Seeding/` for baseline seed orchestration
+- `Users/` for user-specific test data helpers and seeders
+
 ## Auth Endpoints
 
 ### `POST /api/auth/signup`

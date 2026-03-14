@@ -19,13 +19,13 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
     public async Task Signup_ReturnsAccessToken_ForNewUser()
     {
         var client = _fixture.CreateClient();
-        var email = $"signup-{Guid.NewGuid():N}@example.com";
+        var user = TestUserData.NewUser("signup");
 
         var signupResponse = await client.PostAsJsonAsync("/api/auth/signup", new
         {
-            email,
-            displayName = "Signup User",
-            password = "Password123!"
+            email = user.Email,
+            displayName = user.DisplayName,
+            password = user.Password
         });
 
         Assert.Equal(HttpStatusCode.OK, signupResponse.StatusCode);
@@ -34,8 +34,8 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
 
         Assert.NotNull(signupPayload);
         Assert.False(string.IsNullOrWhiteSpace(signupPayload.AccessToken));
-        Assert.Equal(email, signupPayload.User.Email);
-        Assert.Equal("Signup User", signupPayload.User.DisplayName);
+        Assert.Equal(user.Email, signupPayload.User.Email);
+        Assert.Equal(user.DisplayName, signupPayload.User.DisplayName);
     }
 
     [Fact]
@@ -45,8 +45,8 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
 
         var loginResponse = await client.PostAsJsonAsync("/api/auth/login", new
         {
-            email = IntegrationTestSeedData.SeededUserEmail,
-            password = IntegrationTestSeedData.SeededUserPassword
+            email = TestUserData.Seeded.Email,
+            password = TestUserData.Seeded.Password
         });
 
         Assert.Equal(HttpStatusCode.OK, loginResponse.StatusCode);
@@ -64,8 +64,8 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
         var mePayload = await meResponse.Content.ReadFromJsonAsync<UserResponse>();
 
         Assert.NotNull(mePayload);
-        Assert.Equal(IntegrationTestSeedData.SeededUserEmail, mePayload.Email);
-        Assert.Equal(IntegrationTestSeedData.SeededUserDisplayName, mePayload.DisplayName);
+        Assert.Equal(TestUserData.Seeded.Email, mePayload.Email);
+        Assert.Equal(TestUserData.Seeded.DisplayName, mePayload.DisplayName);
     }
 
     [Fact]
@@ -75,7 +75,7 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
 
         var duplicateResponse = await client.PostAsJsonAsync("/api/auth/signup", new
         {
-            email = IntegrationTestSeedData.SeededUserEmail,
+            email = TestUserData.Seeded.Email,
             displayName = "Second User",
             password = "Password123!"
         });
@@ -97,7 +97,7 @@ public sealed class AuthEndpointsTests : IClassFixture<IntegrationTestFixture>
 
         var loginResponse = await client.PostAsJsonAsync("/api/auth/login", new
         {
-            email = IntegrationTestSeedData.SeededUserEmail,
+            email = TestUserData.Seeded.Email,
             password = "WrongPass123!"
         });
 
