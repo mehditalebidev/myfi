@@ -13,6 +13,10 @@ Keep entries brief and append new lines near the top of the active log section.
 
 ## Current Log
 
+- 2026-03-15 | DASH-001 | done | PR #8 | Merged backend dashboard summary endpoint with user-scoped aggregates, recent expenses/upcoming renewals projections, and test coverage.
+- 2026-03-15 | SUB-001 | done | PR #8 | Merged backend subscription CRUD with query support, billing-cycle rules, persistence, migration, and tests.
+- 2026-03-15 | EXP-001 | done | PR #8 | Merged backend expense CRUD with list/query support, ownership checks, persistence, migration, and tests.
+- 2026-03-15 | CAT-001 | done | PR #8 | Merged backend category CRUD with user-scoped uniqueness, persistence, migration, and unit/integration coverage.
 - 2026-03-15 | QUAL-001 | in_progress | `feat/category-crud-backend` | Added backend validation and EF column-length guardrails for expense/subscription text fields with a new migration and validator test coverage to prevent runtime DB exceptions on oversized payloads.
 - 2026-03-15 | QUAL-001 | in_progress | `feat/category-crud-backend` | Started backend-first hardening pass so validation and persistence safeguards can tighten before frontend shell work resumes.
 - 2026-03-15 | DASH-001 | in_progress | `feat/category-crud-backend` | Added backend dashboard summary endpoint with user-scoped monthly spend and subscription projections, spend-by-category aggregation, recent expenses/upcoming renewals lists, plus unit and integration coverage.
