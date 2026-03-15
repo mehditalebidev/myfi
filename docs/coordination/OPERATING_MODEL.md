@@ -66,15 +66,17 @@ Use stable IDs so board updates stay easy to follow.
 ## Required Implementer Flow
 
 1. Read `OPERATING_MODEL.md`, `BOARD.md`, and the selected item entry.
-2. Start from the latest `main`.
-3. Create a focused branch such as `feat/expense-crud`, `fix/auth-refresh`, or
+2. Check older `In Review` items and update any that were merged while waiting.
+3. Start from the latest `main` unless the requested change clearly belongs on the current in-progress branch.
+4. Create a focused branch such as `feat/expense-crud`, `fix/auth-refresh`, or
    `docs/coordination-system`.
-4. Move the selected item to `In Progress` and note the branch name if useful.
-5. Implement the change and update shared docs if the contract or architecture moved.
-6. Add a dated note to `docs/WORKLOG.md`.
-7. Push the branch and open a PR to `main`.
-8. Move the item to `In Review` with the PR link.
-9. After a human merges the PR, move the item to `Done`.
+5. Move the selected item to `In Progress` and note the branch name if useful.
+6. Implement the change and update shared docs if the contract or architecture moved.
+7. Add a dated note to `docs/WORKLOG.md`.
+8. Push the branch and open a PR to `main`.
+9. Switch back to local `main` and delete the local feature branch copy.
+10. Move the item to `In Review` with the PR link.
+11. After a human merges the PR, let GitHub auto-delete the remote branch and then move the item to `Done`.
 
 ## Definition Of Ready
 

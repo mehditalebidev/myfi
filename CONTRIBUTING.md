@@ -29,14 +29,16 @@ Use clear branch names that reflect the type of work:
 
 ## Day-To-Day Flow
 
-1. Update local `main`.
-2. Create a new branch from `main`.
-3. Make focused changes.
-4. Commit in small logical steps.
-5. Push the branch to GitHub.
-6. Open a pull request.
-7. Merge after review and conflict resolution.
-8. Delete the branch after merge.
+1. Check whether older `In Review` work has been merged, and update its status if needed.
+2. Update local `main`.
+3. Create a new branch from `main` unless the work clearly belongs to the current branch.
+4. Make focused changes.
+5. Commit in small logical steps.
+6. Push the branch to GitHub.
+7. Open a pull request.
+8. Switch back to local `main` and delete the local feature branch copy.
+9. Merge after review and conflict resolution.
+10. Let GitHub auto-delete the remote branch after merge.
 
 Typical commands:
 
@@ -50,6 +52,10 @@ git add .
 git commit -m "Add some task"
 
 git push -u origin feat/some-task
+
+# open PR, then clean up local branch
+git checkout main
+git branch -d feat/some-task
 ```
 
 ## Pull Request Rules
@@ -58,6 +64,10 @@ git push -u origin feat/some-task
 - Do not mix unrelated work in one PR.
 - Write a clear title that explains the change.
 - Mention any API contract or shared doc changes in the PR description.
+- Before starting the next unrelated feature, check older PRs that were in review and update their tracked status if they were merged.
+- Start unrelated follow-up work from a fresh branch off `main`, not from an older feature branch.
+- After opening the PR, switch back to `main` locally and remove the local feature branch.
+- Keep the repository setting enabled to automatically delete head branches after merge.
 - Merge frequently instead of letting branches drift for too long.
 
 ## Merge Conflict Rules

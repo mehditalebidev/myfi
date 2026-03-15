@@ -2,6 +2,8 @@
 
 This document complements the shared API contract with backend implementation notes.
 
+Implemented now: the auth and `users/me` routes below. The remaining sections describe the planned next backend slices.
+
 ## Auth
 
 ### `POST /api/v1/auth/signup`
@@ -44,27 +46,27 @@ Responsibilities:
 
 ## Categories
 
-### `GET /api/categories`
+### `GET /api/v1/categories`
 
 - return all categories for current user
 - default ordering by name
 
-### `POST /api/categories`
+### `POST /api/v1/categories`
 
 - validate name required and unique per user
 
-### `PUT /api/categories/{id}`
+### `PUT /api/v1/categories/{id}`
 
 - validate resource belongs to current user
 
-### `DELETE /api/categories/{id}`
+### `DELETE /api/v1/categories/{id}`
 
 - define behavior for referenced expenses/subscriptions before implementation
 - recommended early behavior: allow deletion only if not referenced, or set references nullable after confirmation
 
 ## Expenses
 
-### `GET /api/expenses`
+### `GET /api/v1/expenses`
 
 Query support:
 
@@ -79,7 +81,7 @@ Implementation notes:
 - always scope by `user_id`
 - project to list DTOs efficiently
 
-### `POST /api/expenses`
+### `POST /api/v1/expenses`
 
 Validation notes:
 
@@ -88,13 +90,13 @@ Validation notes:
 - valid category if supplied and belongs to current user
 - valid date
 
-### `GET /api/expenses/{id}` / `PUT /api/expenses/{id}` / `DELETE /api/expenses/{id}`
+### `GET /api/v1/expenses/{id}` / `PUT /api/v1/expenses/{id}` / `DELETE /api/v1/expenses/{id}`
 
 - return `404` for missing or foreign resource ids
 
 ## Subscriptions
 
-### `GET /api/subscriptions`
+### `GET /api/v1/subscriptions`
 
 Recommended support:
 
@@ -103,7 +105,7 @@ Recommended support:
 - filter by active status
 - sorting by renewal date or amount
 
-### `POST /api/subscriptions`
+### `POST /api/v1/subscriptions`
 
 Validation notes:
 
@@ -113,13 +115,13 @@ Validation notes:
 - renewal date required
 - valid category if supplied and belongs to current user
 
-### `GET /api/subscriptions/{id}` / `PUT /api/subscriptions/{id}` / `DELETE /api/subscriptions/{id}`
+### `GET /api/v1/subscriptions/{id}` / `PUT /api/v1/subscriptions/{id}` / `DELETE /api/v1/subscriptions/{id}`
 
 - return `404` for missing or foreign resource ids
 
 ## Dashboard
 
-### `GET /api/dashboard/summary`
+### `GET /api/v1/dashboard/summary`
 
 Responsibilities:
 

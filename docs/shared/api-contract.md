@@ -12,6 +12,12 @@ This document defines the phase 1 API surface the frontend can build against.
 - Money uses decimal-compatible JSON numbers
 - List endpoints support pagination when relevant
 
+## Implementation Status
+
+- Implemented now: `POST /api/v1/auth/signup`, `POST /api/v1/auth/login`, and `GET /api/v1/users/me`
+- Planned next: categories, expenses, subscriptions, and dashboard routes in this document remain the phase 1 contract target, but those backend slices are not checked in yet
+- Frontend code can mock planned endpoints from this document, but should not assume backend availability until the corresponding coordination item lands
+
 ## Error Shape
 
 All API errors should use ProblemDetails-style JSON.
@@ -125,7 +131,7 @@ Response:
 }
 ```
 
-### `GET /api/categories`
+### `GET /api/v1/categories`
 
 Response:
 
@@ -142,7 +148,7 @@ Response:
 ]
 ```
 
-### `POST /api/categories`
+### `POST /api/v1/categories`
 
 Request:
 
@@ -156,11 +162,11 @@ Request:
 
 Response: created category
 
-### `PUT /api/categories/{id}`
+### `PUT /api/v1/categories/{id}`
 
 Request matches create payload.
 
-### `DELETE /api/categories/{id}`
+### `DELETE /api/v1/categories/{id}`
 
 Response: `204 No Content`
 
@@ -184,7 +190,7 @@ Response: `204 No Content`
 }
 ```
 
-### `GET /api/expenses`
+### `GET /api/v1/expenses`
 
 Query params:
 
@@ -209,7 +215,7 @@ Response:
 }
 ```
 
-### `POST /api/expenses`
+### `POST /api/v1/expenses`
 
 Request:
 
@@ -227,15 +233,15 @@ Request:
 
 Response: created expense
 
-### `GET /api/expenses/{id}`
+### `GET /api/v1/expenses/{id}`
 
 Response: expense
 
-### `PUT /api/expenses/{id}`
+### `PUT /api/v1/expenses/{id}`
 
 Request matches create payload.
 
-### `DELETE /api/expenses/{id}`
+### `DELETE /api/v1/expenses/{id}`
 
 Response: `204 No Content`
 
@@ -259,7 +265,7 @@ Response: `204 No Content`
 }
 ```
 
-### `GET /api/subscriptions`
+### `GET /api/v1/subscriptions`
 
 Response:
 
@@ -273,7 +279,7 @@ Response:
 }
 ```
 
-### `POST /api/subscriptions`
+### `POST /api/v1/subscriptions`
 
 Request:
 
@@ -291,21 +297,21 @@ Request:
 
 Response: created subscription
 
-### `GET /api/subscriptions/{id}`
+### `GET /api/v1/subscriptions/{id}`
 
 Response: subscription
 
-### `PUT /api/subscriptions/{id}`
+### `PUT /api/v1/subscriptions/{id}`
 
 Request matches create payload.
 
-### `DELETE /api/subscriptions/{id}`
+### `DELETE /api/v1/subscriptions/{id}`
 
 Response: `204 No Content`
 
 ## Dashboard
 
-### `GET /api/dashboard/summary`
+### `GET /api/v1/dashboard/summary`
 
 Response:
 
@@ -331,4 +337,4 @@ Response:
 
 - Build query hooks around resource groups: auth, categories, expenses, subscriptions, dashboard.
 - Treat field names here as contract names unless changed jointly.
-- The frontend can safely mock against this document before the backend exists.
+- The frontend can safely mock planned endpoints in this document before those backend slices exist.

@@ -9,14 +9,14 @@ Status: in progress
 
 - `SETUP-001` add root README and initial app directories - done
 - `SETUP-002` add workspace entrypoints and contributing guide - done
-- `SETUP-003` initialize frontend and backend project scaffolds - ready
+- `SETUP-003` initialize frontend and backend project scaffolds - in progress (backend scaffold is checked in; frontend scaffold still pending)
 
 ## Stage 1 - Auth Foundation
 
-Status: not started
+Status: in progress
 
-- `AUTH-001` backend auth foundation
-- `AUTH-002` frontend auth shell
+- `AUTH-001` backend auth foundation - in progress
+- `AUTH-002` frontend auth shell - not started
 
 Goal: reach the point where the app can establish an authenticated local session
 using backend-issued tokens.

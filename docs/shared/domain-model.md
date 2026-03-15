@@ -18,32 +18,16 @@ Key fields:
 - `Id`
 - `Email`
 - `DisplayName`
+- `PasswordHash`
 - `CreatedAt`
 - `UpdatedAt`
 
 Rules:
 
 - One user owns many categories, expenses, subscriptions, and auth identities.
-- The user record exists even if additional providers are linked later.
-
-### AuthIdentity
-
-Represents an external login identity such as Google.
-
-Key fields:
-
-- `Id`
-- `UserId`
-- `Provider`
-- `ProviderUserId`
-- `ProviderEmail`
-- `CreatedAt`
-- `LastLoginAt`
-
-Rules:
-
-- `Provider + ProviderUserId` must be unique.
-- A user can have multiple auth identities in the future.
+- Email is unique and normalized for login.
+- Password hashes are stored only for local email/password auth.
+- The user record remains the primary app identity even if additional providers are linked later.
 
 ### Category
 
@@ -112,6 +96,28 @@ Rules:
 - Renewal date drives upcoming renewal display.
 - Inactive subscriptions remain stored for history.
 
+## Future Auth Extension
+
+### AuthIdentity
+
+Represents an external login identity such as Google.
+
+Key fields:
+
+- `Id`
+- `UserId`
+- `Provider`
+- `ProviderUserId`
+- `ProviderEmail`
+- `CreatedAt`
+- `LastLoginAt`
+
+Rules:
+
+- `Provider + ProviderUserId` must be unique.
+- A user can have multiple auth identities in the future.
+- This is not part of the current local-auth bootstrap.
+
 ## Phase 2 Entities
 
 ### Budget
@@ -145,5 +151,6 @@ Key fields:
 - All reads and writes are scoped by authenticated user id.
 - Money values should use decimal types, never floating point.
 - Soft complexity is preferred over over-generalization; phase 1 should not be modeled like enterprise finance software.
+- Local auth currently lives on the `User` model; provider identities can be added later without changing ownership boundaries.
 - Subscriptions should not automatically create expenses in phase 1.
 - Dashboard summary is a projection over user-owned records, not a separate stored aggregate.
