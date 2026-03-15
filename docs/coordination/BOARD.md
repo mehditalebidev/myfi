@@ -50,6 +50,7 @@ No blocked items yet.
 ## Board Maintenance Rules
 
 - Keep only actionable items in `Ready`.
+- Before starting a new item, review entries already in `In Review` and move any merged work to `Done`.
 - Move an item to `In Progress` as soon as an implementer starts a branch for it.
 - Include the PR link in `In Review` once a branch is pushed and reviewed.
 - Move items to `Done` only after a human merges the PR.

@@ -40,7 +40,10 @@ without relying on chat history.
 - The planner agent creates or refines stories, priorities, and handoff notes.
 - The implementer agent picks up work that is already marked `Ready` unless the
   user says otherwise.
+- Before starting a new item, the implementer should check older `In Review`
+  items and update them if their PRs were already merged.
 - Shared contract or auth changes must still update the source-of-truth docs in
   `docs/shared/`.
 - Agents open pull requests to `main`; humans merge them.
+- New unrelated work should start from `main` on a fresh focused branch.
 - After opening a PR, switch back to local `main`, delete the local feature branch, and rely on GitHub to auto-delete the remote branch after merge.

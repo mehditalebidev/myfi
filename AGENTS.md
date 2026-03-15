@@ -28,6 +28,7 @@
 ## Coordination Workflow
 - Planner/product-owner agents should create and refine work in `docs/coordination/` and should not implement product code in that role.
 - Implementer agents should pick a `Ready` item from `docs/coordination/BOARD.md` unless the user explicitly overrides that rule.
+- Before starting a new feature, implementer agents should review items already in `In Review` and check whether their PRs were merged so `docs/coordination/BOARD.md` and `docs/WORKLOG.md` can be updated.
 - Implementer agents should update `docs/coordination/BOARD.md` and `docs/WORKLOG.md` as work moves through `In Progress`, `In Review`, `Blocked`, and `Done`.
 - Humans merge pull requests; agents should open PRs to `main` but not merge unless explicitly instructed.
 
@@ -38,9 +39,9 @@
 
 ## Required Git Workflow
 - For any feature, story, fix, or meaningful repo task, do not work directly on `main`.
-- Start from the latest `main`, then create a focused branch before making changes.
+- Before starting unrelated new work, return to the latest `main` and create a focused branch from there.
 - Preferred branch prefixes: `feat/`, `fix/`, `docs/`, `chore/`.
-- If the current task already has an appropriate branch checked out, continue on that branch instead of creating another one.
+- Only continue on the current branch when the new changes are part of that same ongoing work.
 - Commit the work on that branch, push it to GitHub, and open a pull request targeting `main`.
 - Treat branch -> commit -> push -> PR as the default workflow for agents in this repository.
 - After opening a PR, switch back to `main` locally and delete the local feature branch copy.
