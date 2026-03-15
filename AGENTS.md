@@ -168,6 +168,7 @@
 ## Testing Expectations
 - Test behavior, not implementation trivia.
 - Add or update a test for bug fixes when practical.
+- For backend feature work, add unit tests for domain, validation, handler, and security logic alongside any endpoint-level integration coverage.
 - Prefer unit tests for validation and application logic.
 - Prefer integration tests for endpoint wiring and auth-sensitive flows.
 - Keep test data realistic for money, dates, categories, and subscriptions.

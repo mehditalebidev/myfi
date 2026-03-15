@@ -33,6 +33,7 @@ backend/
   src/
     MyFi.Api/
   tests/
+    MyFi.Api.UnitTests/
     MyFi.Api.IntegrationTests/
       Support/
         Infrastructure/
@@ -47,6 +48,7 @@ Run from `backend/`:
 - `dotnet restore MyFi.sln`
 - `dotnet build MyFi.sln`
 - `dotnet test MyFi.sln`
+- `dotnet test tests/MyFi.Api.UnitTests/MyFi.Api.UnitTests.csproj`
 - `dotnet run --project src/MyFi.Api/MyFi.Api.csproj`
 - `dotnet ef database update --project src/MyFi.Api/MyFi.Api.csproj --startup-project src/MyFi.Api/MyFi.Api.csproj`
 
@@ -59,6 +61,7 @@ Run from the repo root:
 - Keep backend-only working notes under `backend/docs/`.
 - Use `backend/docs/local-development.md` for local runtime details.
 - Development OpenAPI JSON is exposed at `/openapi/v1.json` and the Scalar UI at `/docs`.
+- Unit tests live in `backend/tests/MyFi.Api.UnitTests/` and should cover slice handlers, validators, domain behavior, and shared security/result helpers.
 - Integration tests use WebApplicationFactory plus a PostgreSQL Testcontainer, so Docker must be available when running `dotnet test`.
 - Keep reusable test support under `backend/tests/MyFi.Api.IntegrationTests/Support/`, with infrastructure helpers separated from feature-specific test data helpers.
 - Before starting a feature, confirm the active story or bug in `docs/coordination/BOARD.md`.

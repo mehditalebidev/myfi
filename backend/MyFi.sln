@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFi.Api.IntegrationTests", "tests\MyFi.Api.IntegrationTests\MyFi.Api.IntegrationTests.csproj", "{8EDB8B43-123E-410E-AC5A-910AC0EF194A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFi.Api.UnitTests", "tests\MyFi.Api.UnitTests\MyFi.Api.UnitTests.csproj", "{36910FD7-8F42-44BA-A90B-34BF84E1AC97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,18 @@ Global
 		{8EDB8B43-123E-410E-AC5A-910AC0EF194A}.Release|x64.Build.0 = Release|Any CPU
 		{8EDB8B43-123E-410E-AC5A-910AC0EF194A}.Release|x86.ActiveCfg = Release|Any CPU
 		{8EDB8B43-123E-410E-AC5A-910AC0EF194A}.Release|x86.Build.0 = Release|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Debug|x64.Build.0 = Debug|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Debug|x86.Build.0 = Debug|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Release|x64.ActiveCfg = Release|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Release|x64.Build.0 = Release|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Release|x86.ActiveCfg = Release|Any CPU
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +66,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{955E8FAA-E5EA-4762-9BF2-340D296573A3} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{8EDB8B43-123E-410E-AC5A-910AC0EF194A} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{36910FD7-8F42-44BA-A90B-34BF84E1AC97} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 EndGlobal

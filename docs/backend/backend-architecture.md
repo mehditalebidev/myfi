@@ -71,8 +71,14 @@ backend/
           Persistence/
           Shared/
   tests/
+    MyFi.Api.UnitTests/
     MyFi.Api.IntegrationTests/
 ```
+
+## Testing Split
+
+- `MyFi.Api.UnitTests`: fast coverage for domain behavior, validation, handlers, security helpers, and result mapping
+- `MyFi.Api.IntegrationTests`: endpoint wiring, auth flows, middleware behavior, and real PostgreSQL-backed runtime paths
 
 ## Initial Application Modules
 
