@@ -16,9 +16,8 @@ Build a practical personal finance application that helps a single user track ex
 
 The first usable version includes:
 
-- Google sign-in
-- local user creation and external identity linking
-- user profile lookup via authenticated session
+- local email/password signup and login
+- authenticated current-user profile lookup
 - category CRUD
 - expense CRUD
 - subscription CRUD
@@ -32,8 +31,8 @@ The first usable version includes:
 - CSV import/export
 - advanced reports
 - advanced recurring schedule rules
-- multiple auth providers beyond Google
-- email/password login
+- Google OAuth and external identity linking
+- multiple auth providers beyond local email/password
 - shared household features
 - bank integrations
 
@@ -41,7 +40,7 @@ The first usable version includes:
 
 ### Phase 1 - MVP
 
-- Authentication with Google
+- Authentication with local email/password and backend-issued JWTs
 - Categories, expenses, subscriptions
 - Dashboard summary
 - Validation and basic error handling

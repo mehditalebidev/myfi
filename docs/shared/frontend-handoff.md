@@ -7,7 +7,7 @@ This document is the handoff brief for the frontend developer.
 The frontend developer is responsible for:
 
 - app shell and routing
-- login page and callback handling
+- login page and authenticated session handling
 - authenticated layout and navigation
 - category, expense, subscription, and dashboard pages
 - React Query hooks and frontend API module usage
@@ -37,7 +37,7 @@ The frontend developer is responsible for:
 
 ## Done Criteria For Frontend Phase 1
 
-- login and callback screens exist
+- login screen and session bootstrap exist
 - authenticated layout works
 - categories CRUD screens work against mock or real API
 - expenses CRUD screens work against mock or real API
@@ -50,5 +50,5 @@ The frontend developer is responsible for:
 
 - changing property names or response envelopes
 - changing how pagination works
-- changing auth callback payload handling
+- changing auth payloads or token lifecycle expectations
 - changing date or money formatting at the API level

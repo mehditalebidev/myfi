@@ -41,7 +41,7 @@ Do not block frontend work on backend implementation details unless the API cont
 - Frontend: React + TypeScript + Vite
 - Backend: ASP.NET Core Web API
 - Database: PostgreSQL
-- Auth style: SPA uses app JWTs; backend handles Google OAuth and issues app tokens
+- Auth style: SPA uses backend-issued JWTs; the current bootstrap is local email/password with room for future providers
 - Initial deployment priority: local-first development
 - Product priority: balanced full-stack portfolio project
 - MVP focus: auth, categories, expenses, subscriptions, dashboard

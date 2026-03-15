@@ -43,3 +43,4 @@ without relying on chat history.
 - Shared contract or auth changes must still update the source-of-truth docs in
   `docs/shared/`.
 - Agents open pull requests to `main`; humans merge them.
+- After opening a PR, switch back to local `main`, delete the local feature branch, and rely on GitHub to auto-delete the remote branch after merge.

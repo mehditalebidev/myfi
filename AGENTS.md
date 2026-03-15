@@ -7,9 +7,9 @@
 
 ## Current State
 - The repository currently contains planning and handoff docs under `docs/`.
-- Initial `frontend/` and `backend/` workspace folders exist with local `README.md`, `docs/`, and `src/` placeholders.
-- No runnable frontend/backend projects or scripts are checked in yet.
-- Command examples below are the intended defaults once the scaffold exists.
+- The `frontend/` workspace is still a placeholder with local `README.md`, `docs/`, and `src/` entrypoints.
+- The `backend/` workspace now contains a runnable ASP.NET Core API, local development docs, Docker Compose wiring, EF Core migrations, and integration tests.
+- Command examples below should match the checked-in backend reality; call out frontend commands as planned until the frontend scaffold exists.
 
 ## Extra Instruction Files
 - Checked and not found: root `AGENTS.md` before this file, `.cursorrules`, `.cursor/rules/`, `.github/copilot-instructions.md`.
@@ -43,6 +43,8 @@
 - If the current task already has an appropriate branch checked out, continue on that branch instead of creating another one.
 - Commit the work on that branch, push it to GitHub, and open a pull request targeting `main`.
 - Treat branch -> commit -> push -> PR as the default workflow for agents in this repository.
+- After opening a PR, switch back to `main` locally and delete the local feature branch copy.
+- Keep GitHub configured to automatically delete the remote feature branch after the PR is merged.
 - Keep pull requests scoped to one task or feature slice, and resolve merge conflicts on the branch before merge.
 - Use `CONTRIBUTING.md` for the human-friendly explanation of the same workflow.
 
@@ -64,12 +66,14 @@
 - Assume Vitest-style targeting unless the future scaffold defines another runner.
 
 ## Backend Commands
-- Run from `backend/` once it exists.
+- Run from `backend/`.
 - Restore/build: `dotnet restore`, `dotnet build MyFi.sln`
+- Run API: `dotnet run --project src/MyFi.Api/MyFi.Api.csproj`
 - Run all tests: `dotnet test MyFi.sln`
-- Run one test project: `dotnet test tests/MyFi.Application.Tests/MyFi.Application.Tests.csproj`
-- Run one test class: `dotnet test tests/MyFi.Application.Tests/MyFi.Application.Tests.csproj --filter "FullyQualifiedName~CreateExpenseCommandHandlerTests"`
-- Run one test method: `dotnet test tests/MyFi.Application.Tests/MyFi.Application.Tests.csproj --filter "Name~Should_Create_Expense_When_Request_Is_Valid"`
+- Run one test project: `dotnet test tests/MyFi.Api.IntegrationTests/MyFi.Api.IntegrationTests.csproj`
+- Run one test class: `dotnet test tests/MyFi.Api.IntegrationTests/MyFi.Api.IntegrationTests.csproj --filter "FullyQualifiedName~AuthEndpointsTests"`
+- Run one test method: `dotnet test tests/MyFi.Api.IntegrationTests/MyFi.Api.IntegrationTests.csproj --filter "Name~Login_And_GetMe_Work_WithSeededUser"`
+- Apply migrations locally: `dotnet tool restore && dotnet ef database update --project src/MyFi.Api/MyFi.Api.csproj --startup-project src/MyFi.Api/MyFi.Api.csproj`
 
 ## Infra Commands
 - Run from repo root once infra files exist.
@@ -77,10 +81,10 @@
 - Stop local services: `docker-compose down`
 
 ## Architecture Rules
-- Preserve the planned boundary: `API -> Application -> Domain -> Infrastructure`.
+- Preserve the current backend direction: a simple vertical-slice API inside `MyFi.Api`, with shared cross-cutting code under `Common/`.
 - Keep controllers and route handlers thin.
-- Keep business rules in Application or Domain, not transport layers.
-- Avoid over-abstracting repositories when direct framework usage is clearer.
+- Keep business rules in slice handlers and feature-local domain types, not transport layers.
+- Avoid prematurely splitting the backend into extra class libraries unless the docs are deliberately updated first.
 - Keep user scoping explicit in every query and mutation.
 - Do not silently change the planned architecture direction.
 
@@ -105,11 +109,11 @@
 - Do not let page files collect API logic, schema logic, and heavy UI logic together.
 
 ## Backend Structure Rules
-- Domain must not depend on API or infrastructure concerns.
-- Application can depend on Domain.
-- Infrastructure can depend on Application and Domain.
-- Keep EF Core and provider integrations out of Domain.
-- Keep validation in the Application layer.
+- Keep `Features/*` as the primary home for backend business logic.
+- Keep shared persistence, security, result, and pipeline helpers in `Common/` only when they are truly cross-cutting.
+- Feature-local entities and EF configuration can live inside the same slice when they are specific to that feature.
+- Keep validation close to commands and queries and run it through the MediatR pipeline.
+- Do not spread one feature across multiple folders unless there is a clear cross-slice reason.
 
 ## Formatting
 - Use the repository formatter once it is configured.
@@ -152,10 +156,12 @@
 - Every read and write must be scoped by authenticated user id.
 
 ## Auth And Security
-- Backend owns Google OAuth details.
+- Backend owns auth implementation details.
+- The current auth bootstrap is local email/password with backend-issued JWTs.
+- If external providers are added later, keep that integration behind backend boundaries.
 - Frontend should treat auth as backend-issued token auth.
 - Keep JWT claims minimal and app-specific.
-- Refresh tokens should be rotated and stored securely; never trust client-provided ownership data.
+- If refresh tokens are added later, rotate and store them securely; never trust client-provided ownership data.
 - Log failures without logging sensitive token values.
 
 ## Testing Expectations

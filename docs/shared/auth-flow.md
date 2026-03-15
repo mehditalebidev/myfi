@@ -38,9 +38,9 @@
 
 ## Auth Endpoints
 
-- `POST /auth/signup`
-- `POST /auth/login`
-- `GET /users/me`
+- `POST /api/v1/auth/signup`
+- `POST /api/v1/auth/login`
+- `GET /api/v1/users/me`
 
 ## Future Extensibility
 

@@ -73,8 +73,9 @@ Use stable IDs so board updates stay easy to follow.
 5. Implement the change and update shared docs if the contract or architecture moved.
 6. Add a dated note to `docs/WORKLOG.md`.
 7. Push the branch and open a PR to `main`.
-8. Move the item to `In Review` with the PR link.
-9. After a human merges the PR, move the item to `Done`.
+8. Switch back to local `main` and delete the local feature branch copy.
+9. Move the item to `In Review` with the PR link.
+10. After a human merges the PR, let GitHub auto-delete the remote branch and then move the item to `Done`.
 
 ## Definition Of Ready
 

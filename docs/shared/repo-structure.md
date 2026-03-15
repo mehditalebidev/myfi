@@ -1,6 +1,6 @@
 # Concrete Folder Structure
 
-This is the recommended repository shape before implementation begins.
+This is the current repository shape plus the near-term target structure as implementation continues.
 
 ## Top-Level Layout
 
@@ -22,10 +22,12 @@ myfi/
     src/
   .env.example
   docker-compose.yml
+  AGENTS.md
+  CONTRIBUTING.md
   README.md
 ```
 
-## Frontend Structure
+## Planned Frontend Structure
 
 ```text
 frontend/
@@ -59,29 +61,47 @@ frontend/
   vite.config.ts
 ```
 
-## Backend Structure
+## Current Backend Structure
 
 ```text
 backend/
   README.md
   docs/
+    README.md
+    local-development.md
   src/
     MyFi.Api/
-    MyFi.Application/
-    MyFi.Domain/
-    MyFi.Infrastructure/
+      Common/
+        Api/
+        Behaviors/
+        Persistence/
+        Results/
+        Security/
+      Features/
+        Users/
+          Domain/
+          Endpoints/
+          GetCurrentUser/
+          Login/
+          Persistence/
+          Shared/
+          Signup/
+      Program.cs
   tests/
     MyFi.Api.IntegrationTests/
-    MyFi.Application.Tests/
+      Support/
+        Infrastructure/
+        Seeding/
+        Users/
+  dotnet-tools.json
   MyFi.sln
 ```
 
 ## Backend Responsibility Split
 
-- `MyFi.Api`: endpoints, middleware, auth plumbing, DI registration
-- `MyFi.Application`: use cases, DTOs, validators, interfaces, query logic
-- `MyFi.Domain`: entities, enums, value rules, core business invariants
-- `MyFi.Infrastructure`: EF Core, database access, external provider integrations, token persistence
+- `MyFi.Api/Common`: cross-cutting API helpers, persistence, validation behavior, security, and shared result models
+- `MyFi.Api/Features/*`: slice-local endpoints, handlers, validators, DTOs, entities, and EF configuration
+- `tests/MyFi.Api.IntegrationTests`: end-to-end API tests plus shared test support and seeding helpers
 
 ## Frontend Responsibility Split
 
@@ -100,3 +120,4 @@ backend/
 - Planner and coordinator work lives in `docs/coordination/` plus `docs/WORKLOG.md`
 - `frontend/README.md` and `backend/README.md` should be treated as local entrypoints for agents working in those areas.
 - Contract changes must be updated first in `docs/shared/api-contract.md`
+- Frontend structure under `frontend/` remains planned until the frontend scaffold is initialized.

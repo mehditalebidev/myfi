@@ -4,18 +4,18 @@ This file holds the current implementation-ready feature and story entries.
 
 ## SETUP-003 - Initialize frontend and backend project scaffolds
 
-- Status: `Ready`
+- Status: `In Progress`
 - Suggested branch: `chore/project-scaffolds`
 - Goal: turn the placeholder workspaces into real app foundations without moving
   away from the documented stack and folder boundaries.
 - Scope:
   - initialize the React + TypeScript + Vite frontend inside `frontend/`
-  - initialize the ASP.NET Core solution and projects inside `backend/`
+  - keep the checked-in ASP.NET Core backend scaffold aligned with the docs while frontend setup catches up
   - add the first `.env.example` and any minimal root setup files needed to run locally
   - keep code and config aligned with `docs/shared/repo-structure.md`
 - Acceptance criteria:
   - `frontend/` contains the planned app scaffold structure
-  - `backend/` contains the planned solution/project structure
+  - `backend/` contains the current documented solution/project structure
   - the repository still reflects the documented monorepo shape
   - docs are updated if the real scaffold introduces small naming adjustments
 - Docs to update:
@@ -25,21 +25,20 @@ This file holds the current implementation-ready feature and story entries.
 
 ## AUTH-001 - Build backend auth foundation
 
-- Status: `Backlog`
+- Status: `In Progress`
 - Suggested branch: `feat/backend-auth-foundation`
 - Depends on: `SETUP-003`
-- Goal: establish the backend skeleton for Google OAuth, local user linkage, and
-  app-issued access and refresh tokens.
+- Goal: establish the backend auth foundation with local email/password, backend-issued JWTs, and a path to add external providers later.
 - Scope:
-  - add the backend auth modules, DTOs, and persistence shapes
-  - create the token and user/auth identity foundation
-  - expose the planned auth endpoints as the first backend auth slice
-  - keep provider-specific logic behind backend boundaries
+  - add the user, password, token, and persistence foundation for local auth
+  - expose signup, login, and `users/me` as the first backend auth slice
+  - wire validation, ProblemDetails responses, API versioning, and dev API docs
+  - keep future provider-specific logic behind backend boundaries
 - Acceptance criteria:
   - the backend contains the first auth flow scaffolding matching `docs/shared/auth-flow.md`
   - auth models align with `docs/shared/domain-model.md`
   - endpoint names and payloads align with `docs/shared/api-contract.md`
-  - refresh token handling follows the documented security rules
+  - integration tests prove the main auth flow against PostgreSQL-backed runtime behavior
 - Docs to update:
   - `docs/shared/api-contract.md` if DTOs move
   - `docs/shared/auth-flow.md` if flow details move
@@ -50,15 +49,14 @@ This file holds the current implementation-ready feature and story entries.
 - Status: `Backlog`
 - Suggested branch: `feat/frontend-auth-shell`
 - Depends on: `SETUP-003`, `AUTH-001`
-- Goal: create the frontend auth shell that can start login, handle callback,
-  store session state, and protect authenticated routes.
+- Goal: create the frontend auth shell that can handle login, store session state, and protect authenticated routes.
 - Scope:
   - add app bootstrap and auth provider wiring
-  - add login entry point and callback handling route
+  - add login entry point and initial authenticated route flow
   - add protected route behavior for authenticated pages
   - align token handling with backend-issued app auth
 - Acceptance criteria:
-  - a user can reach a login screen and auth callback route
+  - a user can reach a login screen and establish an authenticated session
   - protected routes can distinguish authenticated vs unauthenticated states
   - frontend auth code uses the backend auth contract rather than Google client SDK assumptions
   - page and component organization follows the frontend architecture docs

@@ -35,8 +35,9 @@ Use clear branch names that reflect the type of work:
 4. Commit in small logical steps.
 5. Push the branch to GitHub.
 6. Open a pull request.
-7. Merge after review and conflict resolution.
-8. Delete the branch after merge.
+7. Switch back to local `main` and delete the local feature branch copy.
+8. Merge after review and conflict resolution.
+9. Let GitHub auto-delete the remote branch after merge.
 
 Typical commands:
 
@@ -50,6 +51,10 @@ git add .
 git commit -m "Add some task"
 
 git push -u origin feat/some-task
+
+# open PR, then clean up local branch
+git checkout main
+git branch -d feat/some-task
 ```
 
 ## Pull Request Rules
@@ -58,6 +63,8 @@ git push -u origin feat/some-task
 - Do not mix unrelated work in one PR.
 - Write a clear title that explains the change.
 - Mention any API contract or shared doc changes in the PR description.
+- After opening the PR, switch back to `main` locally and remove the local feature branch.
+- Keep the repository setting enabled to automatically delete head branches after merge.
 - Merge frequently instead of letting branches drift for too long.
 
 ## Merge Conflict Rules
