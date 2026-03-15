@@ -43,12 +43,22 @@ In Development, API docs are also available at:
 - Scalar UI: `http://localhost:${API_PORT}/docs`
 - OpenAPI JSON: `http://localhost:${API_PORT}/openapi/v1.json`
 
+## Run Unit Tests
+
+From `backend/`:
+
+```bash
+dotnet test tests/MyFi.Api.UnitTests/MyFi.Api.UnitTests.csproj
+```
+
+Unit tests cover auth domain logic, validators, handlers, and shared security/result helpers. They do not require Docker.
+
 ## Run Integration Tests
 
 From `backend/`:
 
 ```bash
-dotnet test MyFi.sln
+dotnet test tests/MyFi.Api.IntegrationTests/MyFi.Api.IntegrationTests.csproj
 ```
 
 Integration tests use `WebApplicationFactory` with a PostgreSQL Testcontainer. Docker must be running before the test suite starts. The test fixture boots a dedicated PostgreSQL container, applies migrations through the API startup path, and seeds baseline integration-test data before requests run.
@@ -58,6 +68,8 @@ Test support is organized under `backend/tests/MyFi.Api.IntegrationTests/Support
 - `Infrastructure/` for the test container and WebApplicationFactory wiring
 - `Seeding/` for baseline seed orchestration
 - `Users/` for user-specific test data helpers and seeders
+
+Running `dotnet test MyFi.sln` executes both the unit and integration test projects.
 
 ## Auth Endpoints
 

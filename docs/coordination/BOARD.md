@@ -30,7 +30,7 @@ Update it whenever work changes status.
 | ID | Title | Notes |
 | --- | --- | --- |
 | SETUP-003 | Initialize frontend and backend project scaffolds | Backend-first implementation started per user direction. Frontend scaffold still pending. |
-| AUTH-001 | Build backend auth foundation | User-directed local email/password auth is in progress with organized vertical slices, MediatR, FluentValidation, ProblemDetails, seeded PostgreSQL integration tests, Scalar docs, and API versioning. |
+| AUTH-001 | Build backend auth foundation | User-directed local email/password auth is in progress with organized vertical slices, MediatR, FluentValidation, ProblemDetails, seeded PostgreSQL integration tests, unit tests for auth logic, Scalar docs, and API versioning. |
 
 ## In Review
 

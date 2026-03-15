@@ -88,6 +88,10 @@ backend/
           Signup/
       Program.cs
   tests/
+    MyFi.Api.UnitTests/
+      Common/
+      Features/
+      Support/
     MyFi.Api.IntegrationTests/
       Support/
         Infrastructure/
@@ -101,6 +105,7 @@ backend/
 
 - `MyFi.Api/Common`: cross-cutting API helpers, persistence, validation behavior, security, and shared result models
 - `MyFi.Api/Features/*`: slice-local endpoints, handlers, validators, DTOs, entities, and EF configuration
+- `tests/MyFi.Api.UnitTests`: fast unit coverage for shared helpers and slice logic
 - `tests/MyFi.Api.IntegrationTests`: end-to-end API tests plus shared test support and seeding helpers
 
 ## Frontend Responsibility Split

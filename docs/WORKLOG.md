@@ -13,6 +13,7 @@ Keep entries brief and append new lines near the top of the active log section.
 
 ## Current Log
 
+- 2026-03-15 | AUTH-001 | in_progress | `feat/backend-unit-tests` | Added `MyFi.Api.UnitTests` with coverage for auth domain behavior, validators, handlers, result helpers, ProblemDetails mapping, and security helpers.
 - 2026-03-15 | AUTH-001 | in_progress | `feat/api-versioning-scalar` | Synced shared and coordination docs with the current local auth bootstrap, versioned API routes, and backend-first scaffold state.
 - 2026-03-15 | AUTH-001 | in_progress | `feat/api-versioning-scalar` | Added Scalar API docs and introduced `v1` route-based API versioning for the auth and users endpoints.
 - 2026-03-14 | AUTH-001 | in_progress | `feat/api-versioning-scalar` | Replaced the in-memory API test host with WebApplicationFactory plus a seeded PostgreSQL Testcontainers setup for integration tests.

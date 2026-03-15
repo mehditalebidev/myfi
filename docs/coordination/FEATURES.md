@@ -38,6 +38,7 @@ This file holds the current implementation-ready feature and story entries.
   - the backend contains the first auth flow scaffolding matching `docs/shared/auth-flow.md`
   - auth models align with `docs/shared/domain-model.md`
   - endpoint names and payloads align with `docs/shared/api-contract.md`
+  - unit tests cover auth domain, validation, handler, and security logic
   - integration tests prove the main auth flow against PostgreSQL-backed runtime behavior
 - Docs to update:
   - `docs/shared/api-contract.md` if DTOs move
