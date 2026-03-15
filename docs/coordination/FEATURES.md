@@ -67,54 +67,62 @@ This file holds the current implementation-ready feature and story entries.
 
 ## CAT-001 - Category CRUD vertical slice
 
-- Status: `Backlog`
-- Suggested branch: `feat/category-crud`
-- Depends on: `SETUP-003`, `AUTH-001`, `AUTH-002`
+- Status: `In Progress`
+- Suggested branch: `feat/category-crud-backend`
+- Depends on: `SETUP-003`, `AUTH-001`
 - Goal: let an authenticated user create, edit, list, and delete categories.
+- Backend-first note: implement the API slice and tests now while frontend work is deferred; complete the frontend hookup later under `AUTH-002` and the eventual authenticated app shell.
 - Acceptance criteria:
-  - authenticated category CRUD works end to end
+  - authenticated backend category CRUD works against the documented contract
   - category names are unique per user
-  - validation and error states match the shared contract and frontend patterns
+  - validation and error states match the shared contract and backend patterns now, with frontend hookup to follow later
 
 ## EXP-001 - Expense CRUD vertical slice
 
-- Status: `Backlog`
-- Suggested branch: `feat/expense-crud`
+- Status: `In Progress`
+- Suggested branch: `feat/expense-crud-backend`
 - Depends on: `CAT-001`
 - Goal: let an authenticated user manage one-time expenses.
+- Backend-first note: implement the API slice and tests now while frontend work is deferred; complete the frontend hookup later under `AUTH-002` and the eventual authenticated app shell.
 - Acceptance criteria:
-  - expense CRUD works end to end
+  - authenticated backend expense CRUD works against the documented contract, including list/query support
   - expense money values use decimal-safe backend types
-  - filtering and sorting hooks leave room for later expansion
+  - category references stay optional but must belong to the current user when supplied
 
 ## SUB-001 - Subscription CRUD vertical slice
 
-- Status: `Backlog`
-- Suggested branch: `feat/subscription-crud`
+- Status: `In Progress`
+- Suggested branch: `feat/subscription-crud-backend`
 - Depends on: `CAT-001`
+- Backend-first note: the backend slice can land now on the documented contract while the frontend subscription screens remain deferred.
 - Goal: let an authenticated user manage recurring subscriptions.
 - Acceptance criteria:
-  - subscription CRUD works end to end
+  - authenticated backend subscription CRUD works against the documented contract
+  - list endpoint supports pagination, search, active-status filtering, and renewal-date/amount sorting
+  - category references stay optional but must belong to the current user when supplied
   - billing cycle and renewal date behavior match the domain model
   - inactive subscriptions remain stored for history
 
 ## DASH-001 - Dashboard summary vertical slice
 
-- Status: `Backlog`
-- Suggested branch: `feat/dashboard-summary`
+- Status: `In Progress`
+- Suggested branch: `feat/dashboard-summary-backend`
 - Depends on: `EXP-001`, `SUB-001`
+- Backend-first note: implement the dashboard summary backend projection now while frontend dashboard screens remain deferred.
 - Goal: provide a useful monthly dashboard summary across expenses and subscriptions.
 - Acceptance criteria:
   - backend summary endpoint returns user-scoped aggregates only
-  - frontend dashboard communicates current month activity clearly
-  - empty and loading states are handled intentionally
+  - summary includes month spend, active-subscription monthly projection, spend-by-category aggregation, recent expenses, and upcoming renewals
+  - recent expenses and renewals ordering follows backend endpoint notes and shared API contract
+  - frontend dashboard hookup can be completed later without backend contract drift
 
 ## QUAL-001 - MVP hardening pass
 
-- Status: `Backlog`
-- Suggested branch: `chore/mvp-hardening`
+- Status: `In Progress`
+- Suggested branch: `chore/backend-hardening-pass`
 - Depends on: `AUTH-001`, `AUTH-002`, `CAT-001`, `EXP-001`, `SUB-001`, `DASH-001`
 - Goal: tighten the MVP after the main flows exist.
+- Backend-first note: harden backend validation and persistence safeguards now while frontend shell/screens remain deferred.
 - Scope:
   - validation gaps
   - error responses and error UI

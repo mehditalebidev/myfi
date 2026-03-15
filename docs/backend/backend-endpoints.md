@@ -2,7 +2,7 @@
 
 This document complements the shared API contract with backend implementation notes.
 
-Implemented now: the auth and `users/me` routes below. The remaining sections describe the planned next backend slices.
+Implemented now: auth, `users/me`, category CRUD, expense CRUD, subscription CRUD, and dashboard summary routes.
 
 ## Auth
 
@@ -61,8 +61,8 @@ Responsibilities:
 
 ### `DELETE /api/v1/categories/{id}`
 
-- define behavior for referenced expenses/subscriptions before implementation
-- recommended early behavior: allow deletion only if not referenced, or set references nullable after confirmation
+- current behavior: hard delete the owned category and let existing expense and subscription references become `null`
+- revisit delete constraints again if future financial records require stricter history guarantees
 
 ## Expenses
 
@@ -80,13 +80,17 @@ Implementation notes:
 
 - always scope by `user_id`
 - project to list DTOs efficiently
+- default sort by `expenseDate` descending when no explicit sort is supplied
 
 ### `POST /api/v1/expenses`
 
 Validation notes:
 
 - title required
+- title length capped at 200 characters
 - amount > 0
+- payment method length capped at 50 characters when supplied
+- note length capped at 500 characters when supplied
 - valid category if supplied and belongs to current user
 - valid date
 
@@ -98,21 +102,30 @@ Validation notes:
 
 ### `GET /api/v1/subscriptions`
 
-Recommended support:
+Query support:
 
 - pagination
 - search by name
 - filter by active status
 - sorting by renewal date or amount
 
+Implementation notes:
+
+- always scope by `user_id`
+- project to list DTOs efficiently
+- default sort by `renewalDate` ascending when no explicit sort is supplied
+
 ### `POST /api/v1/subscriptions`
 
 Validation notes:
 
 - name required
+- name length capped at 150 characters
 - amount > 0
 - billing cycle in allowed set
+- billing cycle length capped at 20 characters
 - renewal date required
+- reminder days must stay in the range `0..365`
 - valid category if supplied and belongs to current user
 
 ### `GET /api/v1/subscriptions/{id}` / `PUT /api/v1/subscriptions/{id}` / `DELETE /api/v1/subscriptions/{id}`
@@ -134,3 +147,4 @@ Responsibilities:
 Implementation note:
 
 - keep this as query projection logic; do not create stored snapshot tables for phase 1
+- current implementation returns up to 5 recent expenses and up to 5 upcoming active renewals
