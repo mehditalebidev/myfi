@@ -23,6 +23,17 @@ public sealed class ProblemDetailsExtensionsTests
     }
 
     [Fact]
+    public void ToActionResult_ReturnsNoContentResult_WhenNonGenericResultSucceeds()
+    {
+        var controller = CreateController();
+        var result = Result.Success();
+
+        var actionResult = result.ToActionResult(controller);
+
+        Assert.IsType<NoContentResult>(actionResult);
+    }
+
+    [Fact]
     public void ToProblem_ReturnsProblemDetailsWithCodeExtension()
     {
         var controller = CreateController();

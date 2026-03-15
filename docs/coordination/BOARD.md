@@ -16,10 +16,6 @@ Update it whenever work changes status.
 | --- | --- | --- |
 | AUTH-002 | Build frontend auth shell | Promote to `Ready` after `SETUP-003` and `AUTH-001` land. |
 | CAT-001 | Category CRUD vertical slice | Depends on backend and frontend scaffolds plus auth foundation. |
-| EXP-001 | Expense CRUD vertical slice | Depends on category data shape and authenticated app shell. |
-| SUB-001 | Subscription CRUD vertical slice | Depends on category data shape and authenticated app shell. |
-| DASH-001 | Dashboard summary vertical slice | Depends on expenses and subscriptions data access. |
-| QUAL-001 | Hardening pass for validation and states | Run after the core MVP flows exist end to end. |
 | BUD-001 | Budgets phase kickoff | Deferred from MVP. |
 | REP-001 | Rich reporting and charts | Deferred from MVP. |
 | REM-001 | In-app reminders | Deferred from MVP. |
@@ -31,6 +27,11 @@ Update it whenever work changes status.
 | --- | --- | --- |
 | SETUP-003 | Initialize frontend and backend project scaffolds | Backend-first implementation started per user direction. Frontend scaffold still pending. |
 | AUTH-001 | Build backend auth foundation | User-directed local email/password auth is in progress with organized vertical slices, MediatR, FluentValidation, ProblemDetails, seeded PostgreSQL integration tests, unit tests for auth logic, Scalar docs, and API versioning. |
+| CAT-001 | Category CRUD vertical slice | Backend-first implementation started while frontend work is deferred; keep API contract and user-scoped CRUD behavior aligned so frontend hookup can land later. |
+| EXP-001 | Expense CRUD vertical slice | Backend-first implementation started while frontend work is deferred; keep the documented list/query contract and category ownership rules aligned for later frontend hookup. |
+| SUB-001 | Subscription CRUD vertical slice | Backend-first implementation started while frontend work is deferred; keep the documented list/query contract, billing-cycle rules, and category ownership checks aligned for later frontend hookup. |
+| DASH-001 | Dashboard summary vertical slice | Backend-first implementation started while frontend work is deferred; keep dashboard summary projections and ordering aligned with the shared contract for later frontend hookup. |
+| QUAL-001 | Hardening pass for validation and states | Backend-first hardening started with validator and persistence guardrails to reduce runtime DB failures while frontend remains deferred. |
 
 ## In Review
 

@@ -14,8 +14,8 @@ This document defines the phase 1 API surface the frontend can build against.
 
 ## Implementation Status
 
-- Implemented now: `POST /api/v1/auth/signup`, `POST /api/v1/auth/login`, and `GET /api/v1/users/me`
-- Planned next: categories, expenses, subscriptions, and dashboard routes in this document remain the phase 1 contract target, but those backend slices are not checked in yet
+- Implemented now: `POST /api/v1/auth/signup`, `POST /api/v1/auth/login`, `GET /api/v1/users/me`, category CRUD under `/api/v1/categories`, expense CRUD under `/api/v1/expenses`, subscription CRUD under `/api/v1/subscriptions`, and dashboard summary at `GET /api/v1/dashboard/summary`
+- Planned next: backend MVP routes are now in place; remaining work is frontend hookup and hardening across existing slices
 - Frontend code can mock planned endpoints from this document, but should not assume backend availability until the corresponding coordination item lands
 
 ## Error Shape

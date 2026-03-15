@@ -83,11 +83,11 @@ Columns:
 - `id` uuid primary key
 - `user_id` uuid not null references `users(id)`
 - `category_id` uuid null references `categories(id)`
-- `title` text not null
+- `title` varchar(200) not null
 - `amount` numeric(12,2) not null
 - `expense_date` date not null
-- `payment_method` text null
-- `note` text null
+- `payment_method` varchar(50) null
+- `note` varchar(500) null
 - `is_recurring` boolean not null default false
 - `created_at` timestamp with time zone not null
 - `updated_at` timestamp with time zone not null
@@ -104,9 +104,9 @@ Columns:
 - `id` uuid primary key
 - `user_id` uuid not null references `users(id)`
 - `category_id` uuid null references `categories(id)`
-- `name` text not null
+- `name` varchar(150) not null
 - `amount` numeric(12,2) not null
-- `billing_cycle` text not null
+- `billing_cycle` varchar(20) not null
 - `renewal_date` date not null
 - `is_active` boolean not null default true
 - `reminder_days_before` integer not null default 3

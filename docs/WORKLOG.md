@@ -13,6 +13,16 @@ Keep entries brief and append new lines near the top of the active log section.
 
 ## Current Log
 
+- 2026-03-15 | QUAL-001 | in_progress | `feat/category-crud-backend` | Added backend validation and EF column-length guardrails for expense/subscription text fields with a new migration and validator test coverage to prevent runtime DB exceptions on oversized payloads.
+- 2026-03-15 | QUAL-001 | in_progress | `feat/category-crud-backend` | Started backend-first hardening pass so validation and persistence safeguards can tighten before frontend shell work resumes.
+- 2026-03-15 | DASH-001 | in_progress | `feat/category-crud-backend` | Added backend dashboard summary endpoint with user-scoped monthly spend and subscription projections, spend-by-category aggregation, recent expenses/upcoming renewals lists, plus unit and integration coverage.
+- 2026-03-15 | DASH-001 | in_progress | `feat/category-crud-backend` | Started backend-first dashboard summary work so backend MVP delivery can continue while frontend dashboard screens remain deferred.
+- 2026-03-15 | SUB-001 | in_progress | `feat/category-crud-backend` | Added backend subscription CRUD endpoints, query support, EF persistence, migration, and unit/integration coverage while frontend work remains deferred.
+- 2026-03-15 | SUB-001 | in_progress | `feat/category-crud-backend` | Started backend-first subscription CRUD so backend delivery can continue while frontend scaffold and auth shell work remain deferred.
+- 2026-03-15 | EXP-001 | in_progress | `feat/category-crud-backend` | Added backend expense CRUD endpoints, query support, EF persistence, migration, and unit/integration coverage while frontend work remains deferred.
+- 2026-03-15 | EXP-001 | in_progress | `feat/category-crud-backend` | Started backend-first expense CRUD so backend delivery can continue while frontend scaffold and auth shell work remain deferred.
+- 2026-03-15 | CAT-001 | in_progress | `feat/category-crud-backend` | Added backend category CRUD endpoints, EF persistence, migration, and unit/integration coverage while frontend work remains deferred.
+- 2026-03-15 | CAT-001 | in_progress | `feat/category-crud-backend` | Started backend-first category CRUD so backend slices can keep moving while frontend scaffold and auth shell work remain deferred.
 - 2026-03-15 | AUTH-001 | in_progress | `feat/backend-unit-tests` | Added `MyFi.Api.UnitTests` with coverage for auth domain behavior, validators, handlers, result helpers, ProblemDetails mapping, and security helpers.
 - 2026-03-15 | AUTH-001 | in_progress | `feat/api-versioning-scalar` | Synced shared and coordination docs with the current local auth bootstrap, versioned API routes, and backend-first scaffold state.
 - 2026-03-15 | AUTH-001 | in_progress | `feat/api-versioning-scalar` | Added Scalar API docs and introduced `v1` route-based API versioning for the auth and users endpoints.

@@ -6,6 +6,10 @@ This directory is reserved for the MyFi backend application.
 
 - The backend solution now centers on a single ASP.NET Core API project with an organized vertical-slice layout.
 - Local email/password auth is bootstrapped with signup, login, and `users/me` endpoints.
+- Category CRUD endpoints now exist under `/api/v1/categories` with user-scoped list, create, update, and delete behavior.
+- Expense CRUD endpoints now exist under `/api/v1/expenses` with user-scoped list, filter, sort, create, read, update, and delete behavior.
+- Subscription CRUD endpoints now exist under `/api/v1/subscriptions` with user-scoped list, filter, sort, create, read, update, and delete behavior.
+- Dashboard summary endpoint now exists under `/api/v1/dashboard/summary` with user-scoped monthly projections, spend-by-category aggregation, recent expenses, and upcoming renewals.
 - `docs/` is for backend-specific implementation notes and agent-readable guidance.
 - `src/` contains the API project; feature files stay close together by slice, with MediatR handlers and FluentValidation validators living beside their endpoints.
 

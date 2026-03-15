@@ -7,6 +7,11 @@ namespace MyFi.Api.Common.Api;
 
 public static class ProblemDetailsExtensions
 {
+    public static IActionResult ToActionResult(this Result result, ControllerBase controller)
+    {
+        return result.IsSuccess ? controller.NoContent() : controller.ToProblem(result.Error!);
+    }
+
     public static ActionResult<TValue> ToActionResult<TValue>(
         this Result<TValue> result,
         ControllerBase controller)
