@@ -67,7 +67,7 @@ This file holds the current implementation-ready feature and story entries.
 
 ## CAT-001 - Category CRUD vertical slice
 
-- Status: `In Progress`
+- Status: `Done`
 - Suggested branch: `feat/category-crud-backend`
 - Depends on: `SETUP-003`, `AUTH-001`
 - Goal: let an authenticated user create, edit, list, and delete categories.
@@ -79,7 +79,7 @@ This file holds the current implementation-ready feature and story entries.
 
 ## EXP-001 - Expense CRUD vertical slice
 
-- Status: `In Progress`
+- Status: `Done`
 - Suggested branch: `feat/expense-crud-backend`
 - Depends on: `CAT-001`
 - Goal: let an authenticated user manage one-time expenses.
@@ -91,7 +91,7 @@ This file holds the current implementation-ready feature and story entries.
 
 ## SUB-001 - Subscription CRUD vertical slice
 
-- Status: `In Progress`
+- Status: `Done`
 - Suggested branch: `feat/subscription-crud-backend`
 - Depends on: `CAT-001`
 - Backend-first note: the backend slice can land now on the documented contract while the frontend subscription screens remain deferred.
@@ -105,7 +105,7 @@ This file holds the current implementation-ready feature and story entries.
 
 ## DASH-001 - Dashboard summary vertical slice
 
-- Status: `In Progress`
+- Status: `Done`
 - Suggested branch: `feat/dashboard-summary-backend`
 - Depends on: `EXP-001`, `SUB-001`
 - Backend-first note: implement the dashboard summary backend projection now while frontend dashboard screens remain deferred.
@@ -122,7 +122,7 @@ This file holds the current implementation-ready feature and story entries.
 - Suggested branch: `chore/backend-hardening-pass`
 - Depends on: `AUTH-001`, `AUTH-002`, `CAT-001`, `EXP-001`, `SUB-001`, `DASH-001`
 - Goal: tighten the MVP after the main flows exist.
-- Backend-first note: harden backend validation and persistence safeguards now while frontend shell/screens remain deferred.
+- Backend-first note: initial backend validation and persistence safeguards landed in PR #8; frontend and UI hardening remains deferred until frontend shell/screens are active.
 - Scope:
   - validation gaps
   - error responses and error UI
